@@ -1,2 +1,0 @@
-D:/OneDrive - UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO/Ingeniería en Computación/8vo Semestre/Compu Grafica/Proyecto/ProyectoCG/include/glm/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-D:/OneDrive - UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO/Ingeniería en Computación/8vo Semestre/Compu Grafica/Proyecto/ProyectoCG/include/glm/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

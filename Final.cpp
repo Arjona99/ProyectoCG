@@ -1,7 +1,7 @@
 /*---------------------------------------------------------*/
 /* ------------  Proyecto Final: Pueblo Vaquero -----------*/
 /*------------------------	2021-2	-----------------------*/
-/*------------- Alumnos:    Sebas                 ---------*/
+/*------------- Alumnos:    Sebas Arjona          ---------*/
 /*--------------- Ramos Villaseñor César Mauricio ---------*/
 
 #include <Windows.h>
@@ -275,7 +275,7 @@ int main()
 	Model cabeza("resources/objects/Personaje/cabeza.obj");
 	Model carro("resources/objects/lambo/carroceria.obj");
 	Model llanta("resources/objects/lambo/Wheel.obj");
-	Model casaVieja("resources/objects/casa/OldHouse.obj");
+	Model casaAbandonada("resources/objects/casaAbandonada/casaAbandonada.obj");
 	//Model cubo("resources/objects/cubo/cube02.obj");
 	Model casaDoll("resources/objects/casa/DollHouse.obj");
 
@@ -412,7 +412,7 @@ int main()
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -70.0f));
 		model = glm::scale(model, glm::vec3(5.0f));
 		staticShader.setMat4("model", model);
-		casaVieja.Draw(staticShader);
+		casaAbandonada.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Carro

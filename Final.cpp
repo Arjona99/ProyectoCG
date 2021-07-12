@@ -3,6 +3,7 @@
 /*------------------------	2021-2	-----------------------*/
 /*------------- Alumnos:    Sebas                 ---------*/
 /*--------------- Ramos Villaseñor César Mauricio ---------*/
+/*--------------- Sandoval Miramontes Joaquín -------------*/
 
 #include <Windows.h>
 
@@ -248,12 +249,12 @@ int main()
 
 	vector<std::string> faces
 	{
-		"resources/skybox/right.jpg",
-		"resources/skybox/left.jpg",
-		"resources/skybox/top.jpg",
-		"resources/skybox/bottom.jpg",
-		"resources/skybox/front.jpg",
-		"resources/skybox/back.jpg"
+		"resources/skybox/Desierto3/Right.jpg",
+		"resources/skybox/Desierto3/Left.jpg",
+		"resources/skybox/Desierto3/top.jpg",
+		"resources/skybox/Desierto3/Bottom.jpg",
+		"resources/skybox/Desierto3/Front.jpg",
+		"resources/skybox/Desierto3/Back.jpg"
 	};
 
 	Skybox skybox = Skybox(faces);

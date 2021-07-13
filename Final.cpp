@@ -247,14 +247,23 @@ int main()
 	Shader skyboxShader("Shaders/skybox.vs", "Shaders/skybox.fs");
 	Shader animShader("Shaders/anim.vs", "Shaders/anim.fs");
 
+
+	/*
+		left	-x
+		front	+z
+		right	+x
+		back	-z
+		top		+y
+		bottom	-y
+	*/
 	vector<std::string> faces
 	{
-		"resources/skybox/Desierto3/Right.jpg",
-		"resources/skybox/Desierto3/Left.jpg",
-		"resources/skybox/Desierto3/top.jpg",
-		"resources/skybox/Desierto3/Bottom.jpg",
-		"resources/skybox/Desierto3/Front.jpg",
-		"resources/skybox/Desierto3/Back.jpg"
+		"resources/skybox/Desierto7/posx.jpg",		//right
+		"resources/skybox/Desierto7/negx.jpg",		//left
+		"resources/skybox/Desierto7/posy.jpg",		//top
+		"resources/skybox/Desierto7/negy.jpg",		//bottom
+		"resources/skybox/Desierto7/posz.jpg",		//front
+		"resources/skybox/Desierto7/negz.jpg"		//back
 	};
 
 	Skybox skybox = Skybox(faces);

@@ -3,6 +3,4 @@
 *.sln
 *.vcxproj
 *.vcxproj.*
-*.sln
-ProyectoCG/*
-Debug/*
+Debug/**

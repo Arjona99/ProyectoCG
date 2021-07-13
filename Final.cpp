@@ -3,6 +3,7 @@
 /*------------------------	2021-2	-----------------------*/
 /*------------- Alumnos:    Sebas                 ---------*/
 /*--------------- Ramos Villaseñor César Mauricio ---------*/
+/*--------------- Sandoval Miramontes Joaquín -------------*/
 
 #include <Windows.h>
 
@@ -246,14 +247,23 @@ int main()
 	Shader skyboxShader("Shaders/skybox.vs", "Shaders/skybox.fs");
 	Shader animShader("Shaders/anim.vs", "Shaders/anim.fs");
 
+
+	/*
+		left	-x
+		front	+z
+		right	+x
+		back	-z
+		top		+y
+		bottom	-y
+	*/
 	vector<std::string> faces
 	{
-		"resources/skybox/right.jpg",
-		"resources/skybox/left.jpg",
-		"resources/skybox/top.jpg",
-		"resources/skybox/bottom.jpg",
-		"resources/skybox/front.jpg",
-		"resources/skybox/back.jpg"
+		"resources/skybox/Desierto7/posx.jpg",		//right
+		"resources/skybox/Desierto7/negx.jpg",		//left
+		"resources/skybox/Desierto7/posy.jpg",		//top
+		"resources/skybox/Desierto7/negy.jpg",		//bottom
+		"resources/skybox/Desierto7/posz.jpg",		//front
+		"resources/skybox/Desierto7/negz.jpg"		//back
 	};
 
 	Skybox skybox = Skybox(faces);

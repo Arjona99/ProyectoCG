@@ -275,6 +275,9 @@ int main()
 
 	// load models
 	// -----------
+	Model woodFence("resources/objects/woodFence/woodFence.obj");
+	Model rock1("resources/objects/rock1/rock1.obj");
+	Model barrel1("resources/objects/barrel/barrel.obj");
 	Model superficie("resources/objects/piso/superficie.obj");
 
 	//Inicialización de KeyFrames
@@ -358,6 +361,25 @@ int main()
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
+
+		//Barrel 1 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(70.0f, 0.0f, 250.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		staticShader.setMat4("model", model);
+		barrel1.Draw(staticShader);
+
+		//Rock 1 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(50.0f, 0.0f, 230.0f));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		staticShader.setMat4("model", model);
+		rock1.Draw(staticShader);
+
+		// Wood Fence -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 230.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		woodFence.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));

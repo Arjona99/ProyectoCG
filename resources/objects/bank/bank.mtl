@@ -1,0 +1,58 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 13.07.2021 19:04:38
+
+newmtl Material_042
+	Ns 96.0784
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 0.6400 0.6400 0.6400
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka wood_76.jpg
+	map_Kd wood_76.jpg
+
+newmtl Material_049
+	Ns 96.0784
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 0.6400 0.6400 0.6400
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka bank txtr.png
+	map_Kd bank txtr.png
+
+newmtl Material_050
+	Ns 96.0784
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 0.6400 0.6400 0.6400
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka vikno chrvene txtr.png
+	map_Kd vikno chrvene txtr.png
+
+newmtl Material_051
+	Ns 96.0784
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 0.6400 0.6400 0.6400
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka bank viveska.png
+	map_Kd bank viveska.png

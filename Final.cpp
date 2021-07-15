@@ -279,6 +279,7 @@ int main()
 	Model bank("resources/objects/bank/bank.obj");
 	Model store("resources/objects/store/store.obj");
 	Model church("resources/objects/church/church.obj");
+	Model gallow("resources/objects/gallow/gallow.obj");
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -363,7 +364,7 @@ int main()
 		staticShader.setMat4("view", view);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -3.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(0.0f, -2.7f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
 		staticShader.setMat4("model", model);
 		ground.Draw(staticShader);
@@ -382,12 +383,19 @@ int main()
 		store.Draw(staticShader);
 
 		// Church
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-46.0f, 0.5f, -78.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-46.0f, 0.3f, -78.0f));
 		model = glm::scale(model, glm::vec3(34.0f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		church.Draw(staticShader);
 
+		// Gallow
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-12.0f, 1.5f, -34.0f));
+		model = glm::scale(model, glm::vec3(0.06f));
+		staticShader.setMat4("model", model);
+		gallow.Draw(staticShader);
+
+		
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario

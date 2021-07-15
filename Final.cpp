@@ -276,6 +276,10 @@ int main()
 	// load models
 	// -----------
 	Model superficie("resources/objects/piso/superficie.obj");
+	Model saloon("resources/objects/saloon/saloon.obj");
+	Model sheriff_office("resources/objects/sheriff/sheriff.obj");
+	Model hotel("resources/objects/hotel/hotel.obj");
+	Model train_station("resources/objects/trainStation/trainStation.obj");
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -364,6 +368,47 @@ int main()
 		model = glm::scale(model, glm::vec3(5.0f));
 		staticShader.setMat4("model", model);
 		superficie.Draw(staticShader);
+
+			// -------------------------------------------------------------------------------------------------------------------------
+			// BAR
+			// -------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-100.0f,0.0f,70.0f));
+		model = glm::scale(model,glm::vec3(3.0f));
+		model = glm::rotate(model, glm::radians(225.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		saloon.Draw(staticShader);
+
+			// --------------------------------------------------------------------------------------------------------------------------
+			// SHERIFF OFFICE
+			// --------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-160.0f, 0.0f, 150.0f));
+		model = glm::scale(model, glm::vec3(0.18f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		sheriff_office.Draw(staticShader);
+
+			// ---------------------------------------------------------------------------------------------------------------------------
+			// HOTEL
+			// ---------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::translate(model, glm::vec3(-750.0f, 70.0f, -300.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hotel.Draw(staticShader);
+
+			// ----------------------------------------------------------------------------------------------------------------------------
+			// ESTACIÓN DE TREN
+			// ----------------------------------------------------------------------------------------------------------------------------
+		model = glm::mat4(4.0f);
+		model = glm::scale(model, glm::vec3(0.18f));
+		staticShader.setMat4("model", model);
+		train_station.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario

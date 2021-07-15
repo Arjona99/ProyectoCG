@@ -1,7 +1,7 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 12.07.2021 21:09:49
+# File Created: 14.07.2021 21:31:11
 
-newmtl 02___Default
+newmtl 09___Default
 	Ns 10.0000
 	Ni 1.5000
 	d 1.0000
@@ -12,8 +12,8 @@ newmtl 02___Default
 	Kd 0.5882 0.5882 0.5882
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka sand.jpg
-	map_Kd sand.jpg
+	map_Ka soil.jpg
+	map_Kd soil.jpg
 
 newmtl 08___Default
 	Ns 10.0000
@@ -29,7 +29,7 @@ newmtl 08___Default
 	map_Ka grass.jpg
 	map_Kd grass.jpg
 
-newmtl 07___Default
+newmtl 15___Default
 	Ns 10.0000
 	Ni 1.5000
 	d 1.0000
@@ -40,5 +40,19 @@ newmtl 07___Default
 	Kd 0.5882 0.5882 0.5882
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka soil2.jpg
-	map_Kd soil2.jpg
+	map_Ka arena.png
+	map_Kd arena.png
+
+newmtl 14___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka arena.png
+	map_Kd arena.png

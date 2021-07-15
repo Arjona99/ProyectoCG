@@ -275,11 +275,19 @@ int main()
 
 	// load models
 	// -----------
+
 	Model superficie("resources/objects/piso/superficie.obj");
 	Model saloon("resources/objects/saloon/saloon.obj");
 	Model sheriff_office("resources/objects/sheriff/sheriff.obj");
 	Model hotel("resources/objects/hotel/hotel.obj");
 	Model train_station("resources/objects/trainStation/trainStation.obj");
+
+	Model bank("resources/objects/bank/bank.obj");
+	Model store("resources/objects/store/store.obj");
+	Model church("resources/objects/church/church.obj");
+
+	Model rail("resources/objects/rail/rail.obj");
+
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -364,18 +372,39 @@ int main()
 		staticShader.setMat4("view", view);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
-		model = glm::scale(model, glm::vec3(5.0f));
+		model = glm::translate(model, glm::vec3(0.0f, -3.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
 		staticShader.setMat4("model", model);
 		superficie.Draw(staticShader);
+
+		// Bank
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(67.0f, 0.0f, -22.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		staticShader.setMat4("model", model);
+		bank.Draw(staticShader);
+
+		// Store
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-53.0f, 0.0f, -23.0f));
+		model = glm::scale(model, glm::vec3(23.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		store.Draw(staticShader);
+
+		// Church
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-46.0f, 0.5f, -78.0f));
+		model = glm::scale(model, glm::vec3(34.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		church.Draw(staticShader);
+
 
 			// -------------------------------------------------------------------------------------------------------------------------
 			// BAR
 			// -------------------------------------------------------------------------------------------------------------------------
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-100.0f,0.0f,70.0f));
-		model = glm::scale(model,glm::vec3(3.0f));
+		model = glm::translate(model, glm::vec3(-18.0f,0.0f,12.0f));
+		model = glm::scale(model,glm::vec3(0.6f));
 		model = glm::rotate(model, glm::radians(225.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		saloon.Draw(staticShader);
@@ -385,8 +414,8 @@ int main()
 			// --------------------------------------------------------------------------------------------------------------------------
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-160.0f, 0.0f, 150.0f));
-		model = glm::scale(model, glm::vec3(0.18f));
+		model = glm::translate(model, glm::vec3(-35.0f, 0.0f, 28.0f));
+		model = glm::scale(model, glm::vec3(0.045f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		sheriff_office.Draw(staticShader);
@@ -396,8 +425,8 @@ int main()
 			// ---------------------------------------------------------------------------------------------------------------------------
 
 		model = glm::mat4(1.0f);
-		model = glm::scale(model, glm::vec3(0.2f));
-		model = glm::translate(model, glm::vec3(-750.0f, 70.0f, -300.0f));
+		model = glm::scale(model, glm::vec3(0.05f));
+		model = glm::translate(model, glm::vec3(-530.0f, 70.0f, -255.0f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hotel.Draw(staticShader);
@@ -406,9 +435,38 @@ int main()
 			// ESTACIÓN DE TREN
 			// ----------------------------------------------------------------------------------------------------------------------------
 		model = glm::mat4(4.0f);
-		model = glm::scale(model, glm::vec3(0.18f));
+		model = glm::translate(model, glm::vec3(-45.0f,-0.5f,-10.0f));
+		model = glm::scale(model, glm::vec3(0.038f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		train_station.Draw(staticShader);
+
+			// -----------------------------------------------------------------------------------------------------------------------------
+			// Vias del Tren
+			// -----------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(4.0f);
+		model = glm::translate(model, glm::vec3(-60.0f, -0.3f, -17.0f));
+		model = glm::scale(model, glm::vec3(0.020f));
+		tmp = model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+		model = glm::translate(tmp, glm::vec3(1265.0f,0.0f,0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+		model = glm::translate(tmp, glm::vec3(-1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+		model = glm::translate(model, glm::vec3(-1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+		model = glm::translate(model, glm::vec3(-1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario

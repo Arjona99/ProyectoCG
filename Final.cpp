@@ -280,6 +280,7 @@ int main()
 	Model store("resources/objects/store/store.obj");
 	Model church("resources/objects/church/church.obj");
 	Model gallow("resources/objects/gallow/gallow.obj");
+	Model house("resources/objects/house1/house1.obj");
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -395,6 +396,13 @@ int main()
 		staticShader.setMat4("model", model);
 		gallow.Draw(staticShader);
 
+		// House 1
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, 0.2f, 27.0f));
+		model = glm::scale(model, glm::vec3(25.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		house.Draw(staticShader);
+		
 		
 
 		// -------------------------------------------------------------------------------------------------------------------------

@@ -287,6 +287,7 @@ int main()
 	Model church("resources/objects/church/church.obj");
 
 	Model rail("resources/objects/rail/rail.obj");
+	Model doctor("resources/objects/doctor/doctor.obj");
 
 
 	//Inicialización de KeyFrames
@@ -467,6 +468,17 @@ int main()
 		model = glm::translate(model, glm::vec3(-1265.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		rail.Draw(staticShader);
+
+			// -------------------------------------------------------------------------------------------------------------------------
+			// Doctor
+			// -------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-5.0f, 0.0f, -20.0f));
+		model = glm::scale(model, glm::vec3(0.15f));
+		staticShader.setMat4("model",model);
+		doctor.Draw(staticShader);
+
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario

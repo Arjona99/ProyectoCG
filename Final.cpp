@@ -286,7 +286,6 @@ int main()
 	Model house4("resources/objects/house4/house4.obj");
 	Model house5("resources/objects/house5/house5.obj");
 
-
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
 	{
@@ -435,7 +434,6 @@ int main()
 		staticShader.setMat4("model", model);
 		house5.Draw(staticShader);
 		
-
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
 		// -------------------------------------------------------------------------------------------------------------------------

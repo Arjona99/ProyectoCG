@@ -278,7 +278,15 @@ int main()
 	Model woodFence("resources/objects/woodFence/woodFence.obj");
 	Model rock1("resources/objects/rock1/rock1.obj");
 	Model barrel1("resources/objects/barrel/barrel.obj");
+	Model barn("resources/objects/barn/barn.obj");
 	Model superficie("resources/objects/piso/superficie.obj");
+	Model tree1("resources/objects/tree1/Gledista_Triacanthos.obj");
+	Model tree2("resources/objects/tree2/Gledista_Triacanthos_2.obj");
+	Model tree3("resources/objects/tree3/Gledista_Triacanthos_3.obj");
+	Model windmill("resources/objects/windmill/windmIll.obj");
+
+
+
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -361,7 +369,39 @@ int main()
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
+		
+		//Windmill
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(200.0f, 0.0f, 170.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		windmill.Draw(staticShader);
+		
+		//Barn
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 230.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		barn.Draw(staticShader);
 
+
+		//Tree 1 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(50.0f, 0.0f, 270.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		tree1.Draw(staticShader);
+
+		//Tree 2 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, 0.0f, 240.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		tree2.Draw(staticShader);
+
+		//Tree 3 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, 0.0f, 210.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		tree3.Draw(staticShader);
+		
 		//Barrel 1 -- park
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(70.0f, 0.0f, 250.0f));
 		model = glm::scale(model, glm::vec3(0.3f));

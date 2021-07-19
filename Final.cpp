@@ -275,7 +275,11 @@ int main()
 
 	// load models
 	// -----------
-	Model superficie("resources/objects/piso/superficie.obj");
+	Model ground("resources/objects/piso/superficie.obj");
+	Model bank("resources/objects/bank/bank.obj");
+	Model store("resources/objects/store/store.obj");
+	Model church("resources/objects/church/church.obj");
+	Model gallow("resources/objects/gallow/gallow.obj");
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -360,10 +364,38 @@ int main()
 		staticShader.setMat4("view", view);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
-		model = glm::scale(model, glm::vec3(5.0f));
+		model = glm::translate(model, glm::vec3(0.0f, -2.7f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
 		staticShader.setMat4("model", model);
-		superficie.Draw(staticShader);
+		ground.Draw(staticShader);
+
+		// Bank
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(67.0f, 0.0f, -22.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		staticShader.setMat4("model", model);
+		bank.Draw(staticShader);
+
+		// Store
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-53.0f, 0.0f, -23.0f));
+		model = glm::scale(model, glm::vec3(23.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		store.Draw(staticShader);
+
+		// Church
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-46.0f, 0.3f, -78.0f));
+		model = glm::scale(model, glm::vec3(34.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		church.Draw(staticShader);
+
+		// Gallow
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-12.0f, 1.5f, -34.0f));
+		model = glm::scale(model, glm::vec3(0.06f));
+		staticShader.setMat4("model", model);
+		gallow.Draw(staticShader);
+
+		
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario

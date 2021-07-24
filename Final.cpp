@@ -283,7 +283,11 @@ int main()
 	Model tree1("resources/objects/tree1/Gledista_Triacanthos.obj");
 	Model tree2("resources/objects/tree2/Gledista_Triacanthos_2.obj");
 	Model tree3("resources/objects/tree3/Gledista_Triacanthos_3.obj");
-	Model windmill("resources/objects/windmill/windmIll.obj");
+	Model windmill("resources/objects/windmill/windmill.obj");
+	Model cactus("resources/objects/cactus/cactus.obj");
+	Model tipi("resources/objects/tipi/tipi.obj");
+
+
 
 
 
@@ -357,7 +361,7 @@ int main()
 		staticShader.setMat4("view", view);
 
 		//// Light
-		glm::vec3 lightColor = glm::vec3(0.6f);
+		glm::vec3 lightColor = glm::vec3(0.5f);
 		glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
 		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.75f);
 		
@@ -369,63 +373,157 @@ int main()
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
-		
-		//Windmill
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(200.0f, 0.0f, 170.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+
+		// Ground
+		model = glm::mat4(1.0f);
+		//model = glm::translate(model, glm::vec3(0.0f, -1.75, 0.0f));
+		model = glm::scale(model, glm::vec3(5.0f));
 		staticShader.setMat4("model", model);
-		windmill.Draw(staticShader);
+		superficie.Draw(staticShader);
 		
-		//Barn
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 230.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+		//Indian camp 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(210.0f, 0.0f, 230.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		barn.Draw(staticShader);
+		tipi.Draw(staticShader);
+		
+		//Windmill
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(120.0f, 0.0f, 250.0f));
+		model = glm::scale(model, glm::vec3(3.5f));
+		model = glm::rotate(model, glm::radians(225.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		windmill.Draw(staticShader);
 
+		//Barrel 1 -- windmill
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(115.0f, 0.0f, 242.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		barrel1.Draw(staticShader);
+
+
+		//Cactus 1 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-55.0f, 0.0f, 250.0f));
+		model = glm::scale(model, glm::vec3(1.2f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 2 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(50.0f, 0.0f, 230.0f));
+		model = glm::scale(model, glm::vec3(1.2f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 3 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-80.0f, 0.0f, 280.0f));
+		model = glm::scale(model, glm::vec3(1.2f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 4 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(100.0f, 0.0f, 263.0f));
+		model = glm::scale(model, glm::vec3(1.2f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 5 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(29.0f, 0.0f, 291.0f));
+		model = glm::scale(model, glm::vec3(1.2f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
 
 		//Tree 1 -- park
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(50.0f, 0.0f, 270.0f));
-		model = glm::scale(model, glm::vec3(0.1f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-75.0f, 0.0f, 260.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
 		staticShader.setMat4("model", model);
 		tree1.Draw(staticShader);
 
 		//Tree 2 -- park
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, 0.0f, 240.0f));
-		model = glm::scale(model, glm::vec3(0.1f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-35.0f, 0.0f, 290.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
 		staticShader.setMat4("model", model);
 		tree2.Draw(staticShader);
 
 		//Tree 3 -- park
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, 0.0f, 210.0f));
-		model = glm::scale(model, glm::vec3(0.1f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(55.0f, 0.0f, 270.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
+		staticShader.setMat4("model", model);
+		tree3.Draw(staticShader);
+
+		//Tree 4 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, 0.0f, 250.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
+		staticShader.setMat4("model", model);
+		tree1.Draw(staticShader);
+
+		//Tree 5 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(80.0f, 0.0f, 240.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
+		staticShader.setMat4("model", model);
+		tree2.Draw(staticShader);
+
+		//Tree 6 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(115.0f, 0.0f, 280.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
 		staticShader.setMat4("model", model);
 		tree3.Draw(staticShader);
 		
-		//Barrel 1 -- park
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(70.0f, 0.0f, 250.0f));
-		model = glm::scale(model, glm::vec3(0.3f));
-		staticShader.setMat4("model", model);
-		barrel1.Draw(staticShader);
-
 		//Rock 1 -- park
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(50.0f, 0.0f, 230.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, 0.0f, 256.0f));
 		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::scale(model, glm::vec3(0.4f));
 		staticShader.setMat4("model", model);
 		rock1.Draw(staticShader);
 
-		// Wood Fence -- park
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 230.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+		//Rock 2 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-70.0f, 0.0f, 235.0f));
+		model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
+		staticShader.setMat4("model", model);
+		rock1.Draw(staticShader);
+
+		//Rock 3 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(90.0f, 0.0f, 285.0f));
+		model = glm::rotate(model, glm::radians(70.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
+		staticShader.setMat4("model", model);
+		rock1.Draw(staticShader);
+
+		//Rock 4 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-35.0f, 0.0f, 265.0f));
+		model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
+		staticShader.setMat4("model", model);
+		rock1.Draw(staticShader);
+
+		// Wood Fence -- barn
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-110.0f, 0.0f, 220.0f));
+		model = glm::scale(model, glm::vec3(2.3f));
 		staticShader.setMat4("model", model);
 		woodFence.Draw(staticShader);
 
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
-		model = glm::scale(model, glm::vec3(5.0f));
+		//Barn
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-130.0f, 0.0f, 200.0f));
+		model = glm::scale(model, glm::vec3(2.0f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		superficie.Draw(staticShader);
+		barn.Draw(staticShader);
+
+		//Cactus 5 -- barn
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-200.0f, 0.0f, 200.0f));
+		model = glm::scale(model, glm::vec3(1.2f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 6 -- barn
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-120.0f, 0.0f, 280.0f));
+		model = glm::scale(model, glm::vec3(1.2f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		
+
+		
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario

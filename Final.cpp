@@ -289,6 +289,11 @@ int main()
 	Model rail("resources/objects/rail/rail.obj");
 	Model doctor("resources/objects/doctor/doctor.obj");
 
+	Model tunnel("resources/objects/tunnel/tunnel.obj");
+	//Model monteUno("resources/objects/monte1/monte1.obj");
+	//Model monteDos("resources/objects/monte2/monte2.obj");
+	Model mountain("resources/objects/mountain/mountain.obj");
+
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -457,6 +462,10 @@ int main()
 		staticShader.setMat4("model", model);
 		rail.Draw(staticShader);
 
+		model = glm::translate(model, glm::vec3(1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
 		model = glm::translate(tmp, glm::vec3(-1265.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		rail.Draw(staticShader);
@@ -465,6 +474,10 @@ int main()
 		staticShader.setMat4("model", model);
 		rail.Draw(staticShader);
 
+		model = glm::translate(model, glm::vec3(-1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+		
 		model = glm::translate(model, glm::vec3(-1265.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		rail.Draw(staticShader);
@@ -479,6 +492,37 @@ int main()
 		staticShader.setMat4("model",model);
 		doctor.Draw(staticShader);
 
+			// -------------------------------------------------------------------------------------------------------------------------
+			// Túneles
+			// -------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model,glm::vec3(-60.0f, -1.0f, 86.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		tunnel.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-60.0f, -1.0f, -70.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		tunnel.Draw(staticShader);
+
+			// -------------------------------------------------------------------------------------------------------------------------
+			// Montañas
+			// -------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -126.0f));
+		staticShader.setMat4("model", model);
+		mountain.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 130.0f));
+		staticShader.setMat4("model", model);
+		mountain.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario

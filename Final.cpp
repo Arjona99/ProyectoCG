@@ -286,10 +286,8 @@ int main()
 	Model windmill("resources/objects/windmill/windmill.obj");
 	Model cactus("resources/objects/cactus/cactus.obj");
 	Model tipi("resources/objects/tipi/tipi.obj");
-
-
-
-
+	Model cow("resources/objects/cow/cow.obj");
+	Model bull("resources/objects/bull/bull.obj");
 
 
 	//Inicialización de KeyFrames
@@ -508,6 +506,34 @@ int main()
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		barn.Draw(staticShader);
+
+		// Barn -- cow 1
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-210.0f, 0.0f, 240.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		cow.Draw(staticShader);
+
+		// Barn -- cow 2
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-225.0f, 0.0f, 240.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::rotate(model, glm::radians(135.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		cow.Draw(staticShader);
+
+		// Barn -- bull 1
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-255.0f, 0.0f, 240.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::rotate(model, glm::radians(135.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		bull.Draw(staticShader);
+
+		// Barn -- bull 1
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-225.0f, 0.0f, 230.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		bull.Draw(staticShader);
 
 		//Cactus 5 -- barn
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-200.0f, 0.0f, 200.0f));

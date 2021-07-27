@@ -46,7 +46,7 @@ GLFWmonitor *monitors;
 void getResolution(void);
 
 // camera
-Camera camera(glm::vec3(0.0f, 10.0f, 90.0f));
+Camera camera(glm::vec3(0.0f, 10.0f, 0.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -684,7 +684,7 @@ int main()
 			// -------------------------------------------------------------------------------------------------------------------------
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model,glm::vec3(-60.0f, -1.0f, 86.0f));
+		model = glm::translate(model,glm::vec3(-60.0f, -1.0f, 80.0f));
 		model = glm::scale(model, glm::vec3(0.3f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
@@ -707,7 +707,7 @@ int main()
 		mountain.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 130.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 138.0f));
 		staticShader.setMat4("model", model);
 		mountain.Draw(staticShader);
 

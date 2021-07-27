@@ -46,7 +46,7 @@ GLFWmonitor *monitors;
 void getResolution(void);
 
 // camera
-Camera camera(glm::vec3(0.0f, 10.0f, 90.0f));
+Camera camera(glm::vec3(0.0f, 10.0f, 0.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -275,7 +275,24 @@ int main()
 
 	// load models
 	// -----------
+	Model woodFence("resources/objects/woodFence/woodFence.obj");
+	Model rock1("resources/objects/rock1/rock1.obj");
+	Model barrel1("resources/objects/barrel/barrel.obj");
+	Model barn("resources/objects/barn/barn.obj");
+	Model tree1("resources/objects/tree1/Gledista_Triacanthos.obj");
+	Model tree2("resources/objects/tree2/Gledista_Triacanthos_2.obj");
+	Model tree3("resources/objects/tree3/Gledista_Triacanthos_3.obj");
+	Model windmill("resources/objects/windmill/windmill.obj");
+	Model waterTower("resources/objects/waterTower/waterTower.obj");
+	Model cactus("resources/objects/cactus/cactus.obj");
+	Model tipi("resources/objects/tipi/tipi.obj");
+	Model cow("resources/objects/cow/cow.obj");
+	Model bull("resources/objects/bull/bull.obj");
 	Model ground("resources/objects/piso/superficie.obj");
+	Model saloon("resources/objects/saloon/saloon.obj");
+	Model sheriff_office("resources/objects/sheriff/sheriff.obj");
+	Model hotel("resources/objects/hotel/hotel.obj");
+	Model train_station("resources/objects/trainStation/trainStation.obj");
 	Model bank("resources/objects/bank/bank.obj");
 	Model store("resources/objects/store/store.obj");
 	Model church("resources/objects/church/church.obj");
@@ -285,6 +302,13 @@ int main()
 	Model house3("resources/objects/house3/house3.obj");
 	Model house4("resources/objects/house4/house4.obj");
 	Model house5("resources/objects/house5/house5.obj");
+	Model rail("resources/objects/rail/rail.obj");
+	Model doctor("resources/objects/doctor/doctor.obj");
+	Model tunnel("resources/objects/tunnel/tunnel.obj");
+	//Model monteUno("resources/objects/monte1/monte1.obj");
+	//Model monteDos("resources/objects/monte2/monte2.obj");
+	Model mountain("resources/objects/mountain/mountain.obj");
+
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -355,7 +379,7 @@ int main()
 		staticShader.setMat4("view", view);
 
 		//// Light
-		glm::vec3 lightColor = glm::vec3(0.6f);
+		glm::vec3 lightColor = glm::vec3(0.5f);
 		glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
 		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.75f);
 		
@@ -368,12 +392,189 @@ int main()
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
 
+		// Ground
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -2.7f, 0.0f));
+		model = glm::translate(model, glm::vec3(0.0f, -3.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
 		staticShader.setMat4("model", model);
 		ground.Draw(staticShader);
+		
+		//Indian camp 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(42.0f, -0.2f, 42.0f));
+		model = glm::scale(model, glm::vec3(0.15f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		tipi.Draw(staticShader);
+		
+		//Windmill
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(27.0f, -0.2f, 50.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, glm::radians(225.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		windmill.Draw(staticShader);
 
+		//WaterTower
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(43.0f, -0.2f, 50.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
+		model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		waterTower.Draw(staticShader);
+
+		//Barrel 1 -- windmill
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(27.0f, -0.2f, 42.0f));
+		model = glm::scale(model, glm::vec3(0.15f));
+		staticShader.setMat4("model", model);
+		barrel1.Draw(staticShader);
+
+
+		//Cactus 1 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(20.0f, 0.0f, 41.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 2 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(15.0f, 0.0f, 50.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 3 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 0.0f, 47.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 4 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-8.0f, 0.0f, 55.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 5 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-15.0f, 0.0f, 43.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Tree 1 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(22.0f, -0.2f, 45.0f));
+		model = glm::scale(model, glm::vec3(0.06f));
+		staticShader.setMat4("model", model);
+		tree1.Draw(staticShader);
+
+		//Tree 2 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(17.0f, -0.2f, 55.0f));
+		model = glm::scale(model, glm::vec3(0.06f));
+		staticShader.setMat4("model", model);
+		tree2.Draw(staticShader);
+
+		//Tree 3 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1.0f, -0.2f, 50.0f));
+		model = glm::scale(model, glm::vec3(0.06f));
+		staticShader.setMat4("model", model);
+		tree3.Draw(staticShader);
+
+		//Tree 4 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, -0.2f, 43.0f));
+		model = glm::scale(model, glm::vec3(0.06f));
+		staticShader.setMat4("model", model);
+		tree1.Draw(staticShader);
+
+		//Tree 5 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-11.0f, -0.2f, 48.0f));
+		model = glm::scale(model, glm::vec3(0.06f));
+		staticShader.setMat4("model", model);
+		tree2.Draw(staticShader);
+
+		//Tree 6 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, -0.2f, 54.0f));
+		model = glm::scale(model, glm::vec3(0.06f));
+		staticShader.setMat4("model", model);
+		tree3.Draw(staticShader);
+		
+		
+		// Rock 1 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(18.0f, -0.2f, 42.0f));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.08f));
+		staticShader.setMat4("model", model);
+		rock1.Draw(staticShader);
+
+		// Rock 2 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(9.0f, -0.2f, 50.0f));
+		model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.02f));
+		staticShader.setMat4("model", model);
+		rock1.Draw(staticShader);
+
+		// Rock 3 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.2f, 46.0f));
+		model = glm::rotate(model, glm::radians(70.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.05f));
+		staticShader.setMat4("model", model);
+		rock1.Draw(staticShader);
+
+		// Rock 4 -- park
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-8.0f, -0.2f, 55.0f));
+		model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.065f));
+		staticShader.setMat4("model", model);
+		rock1.Draw(staticShader);
+
+		// Wood Fence -- barn
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-18.0f, -0.2f, 43.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		staticShader.setMat4("model", model);
+		woodFence.Draw(staticShader);
+
+		//Barn
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-20.0f, -0.2f, 40.0f));
+		model = glm::scale(model, glm::vec3(0.55f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		barn.Draw(staticShader);
+
+		// Barn -- cow 1
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-31.5f, -0.2f, 47.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		cow.Draw(staticShader);
+
+		// Barn -- cow 2
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-35.0f, -0.2f, 49.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(135.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		cow.Draw(staticShader);
+
+		// Barn -- bull 1
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-38.0f, -0.2f, 50.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(135.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		bull.Draw(staticShader);
+
+		// Barn -- bull 1
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-41.0f, -0.2f,  48.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		bull.Draw(staticShader);
+
+		//Cactus 5 -- barn
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-31.0f, -0.2f, 40.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+
+		//Cactus 6 -- barn
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.0f, -0.2f, 42.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		cactus.Draw(staticShader);
+    
 		// Bank
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(67.0f, 0.0f, -22.0f));
 		model = glm::scale(model, glm::vec3(20.0f));
@@ -388,7 +589,7 @@ int main()
 		store.Draw(staticShader);
 
 		// Church
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-46.0f, 0.3f, -78.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-46.0f, 0.5f, -78.0f));
 		model = glm::scale(model, glm::vec3(34.0f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
@@ -426,14 +627,136 @@ int main()
 		model = glm::scale(model, glm::vec3(20.0f));
 		staticShader.setMat4("model", model);
 		house4.Draw(staticShader);
-		
+
 		// House 5
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(60.0f, 0.2f, 4.0f));
 		model = glm::scale(model, glm::vec3(0.4f));
 		model = glm::rotate(model, glm::radians(-3.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house5.Draw(staticShader);
+
+
+
+			// -------------------------------------------------------------------------------------------------------------------------
+			// BAR
+			// -------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-18.0f,0.0f,12.0f));
+		model = glm::scale(model,glm::vec3(0.6f));
+		model = glm::rotate(model, glm::radians(225.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		saloon.Draw(staticShader);
+
+			// --------------------------------------------------------------------------------------------------------------------------
+			// SHERIFF OFFICE
+			// --------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-35.0f, 0.0f, 28.0f));
+		model = glm::scale(model, glm::vec3(0.045f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		sheriff_office.Draw(staticShader);
+
+			// ---------------------------------------------------------------------------------------------------------------------------
+			// HOTEL
+			// ---------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::scale(model, glm::vec3(0.05f));
+		model = glm::translate(model, glm::vec3(-530.0f, 70.0f, -255.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hotel.Draw(staticShader);
+
+			// ----------------------------------------------------------------------------------------------------------------------------
+			// ESTACIÓN DE TREN
+			// ----------------------------------------------------------------------------------------------------------------------------
+		model = glm::mat4(4.0f);
+		model = glm::translate(model, glm::vec3(-45.0f,-0.5f,-10.0f));
+		model = glm::scale(model, glm::vec3(0.038f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		train_station.Draw(staticShader);
+
+			// -----------------------------------------------------------------------------------------------------------------------------
+			// Vias del Tren
+			// -----------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(4.0f);
+		model = glm::translate(model, glm::vec3(-60.0f, -0.3f, -17.0f));
+		model = glm::scale(model, glm::vec3(0.020f));
+		tmp = model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+		model = glm::translate(tmp, glm::vec3(1265.0f,0.0f,0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+		model = glm::translate(model, glm::vec3(1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+		model = glm::translate(tmp, glm::vec3(-1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+		model = glm::translate(model, glm::vec3(-1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+		model = glm::translate(model, glm::vec3(-1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
 		
+		model = glm::translate(model, glm::vec3(-1265.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rail.Draw(staticShader);
+
+			// -------------------------------------------------------------------------------------------------------------------------
+			// Doctor
+			// -------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-5.0f, 0.0f, -20.0f));
+		model = glm::scale(model, glm::vec3(0.15f));
+		staticShader.setMat4("model",model);
+		doctor.Draw(staticShader);
+
+			// -------------------------------------------------------------------------------------------------------------------------
+			// Túneles
+			// -------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model,glm::vec3(-60.0f, -1.0f, 80.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		tunnel.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-60.0f, -1.0f, -70.0f));
+		model = glm::scale(model, glm::vec3(0.3f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		tunnel.Draw(staticShader);
+
+			// -------------------------------------------------------------------------------------------------------------------------
+			// Montañas
+			// -------------------------------------------------------------------------------------------------------------------------
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -126.0f));
+		staticShader.setMat4("model", model);
+		mountain.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 138.0f));
+		staticShader.setMat4("model", model);
+		mountain.Draw(staticShader);
+
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
 		// -------------------------------------------------------------------------------------------------------------------------

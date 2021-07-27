@@ -298,11 +298,11 @@ int main()
 
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+	
 	// render loop
 	// -----------
 	while (!glfwWindowShouldClose(window))
-	{
+	{	
 		skyboxShader.setInt("skybox", 0);
 		
 		// per-frame time logic

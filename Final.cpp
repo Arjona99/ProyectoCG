@@ -289,7 +289,6 @@ int main()
 	Model cow("resources/objects/cow/cow.obj");
 	Model bull("resources/objects/bull/bull.obj");
 	Model ground("resources/objects/piso/superficie.obj");
-	Model superficie("resources/objects/piso/superficie.obj");
 	Model saloon("resources/objects/saloon/saloon.obj");
 	Model sheriff_office("resources/objects/sheriff/sheriff.obj");
 	Model hotel("resources/objects/hotel/hotel.obj");
@@ -297,6 +296,12 @@ int main()
 	Model bank("resources/objects/bank/bank.obj");
 	Model store("resources/objects/store/store.obj");
 	Model church("resources/objects/church/church.obj");
+	Model gallow("resources/objects/gallow/gallow.obj");
+	Model house("resources/objects/house1/house1.obj");
+	Model house2("resources/objects/house2/house2.obj");
+	Model house3("resources/objects/house3/house3.obj");
+	Model house4("resources/objects/house4/house4.obj");
+	Model house5("resources/objects/house5/house5.obj");
 	Model rail("resources/objects/rail/rail.obj");
 	Model doctor("resources/objects/doctor/doctor.obj");
 	Model tunnel("resources/objects/tunnel/tunnel.obj");
@@ -589,6 +594,47 @@ int main()
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		church.Draw(staticShader);
+
+		// Gallow
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-12.0f, 1.5f, -34.0f));
+		model = glm::scale(model, glm::vec3(0.06f));
+		staticShader.setMat4("model", model);
+		gallow.Draw(staticShader);
+
+		// House 1
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, 0.2f, 27.0f));
+		model = glm::scale(model, glm::vec3(25.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		house.Draw(staticShader);
+
+		// House 2
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(18.0f, 0.2f, 67.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		house2.Draw(staticShader);
+
+		// House 3
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, 0.2f, 36.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		house3.Draw(staticShader);
+
+		// House 4
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(11.5f, 0.2f, 5.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
+		staticShader.setMat4("model", model);
+		house4.Draw(staticShader);
+
+		// House 5
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(60.0f, 0.2f, 4.0f));
+		model = glm::scale(model, glm::vec3(0.4f));
+		model = glm::rotate(model, glm::radians(-3.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		house5.Draw(staticShader);
+
 
 
 			// -------------------------------------------------------------------------------------------------------------------------

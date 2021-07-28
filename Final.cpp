@@ -68,93 +68,160 @@ glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 float	movAuto_x = 0.0f,
 		movAuto_z = 0.0f,
 		orienta = 0.0f;
+
 bool	animacion = false,
 		recorrido1 = true,
 		recorrido2 = false,
 		recorrido3 = false,
 		recorrido4 = false;
 
+//Variables for the cow animation
+float	cowPosX = 0.0f,
+		cowPosY = 0.0f,
+		cowPosZ = 0.0f,
+		cowRotY = 0.0f,
+		cowRotBLX = 0.0f,
+		cowRotFLX = 0.0f,
+		cowRotBLZ = 0.0f,
+		cowRotFLZ = 0.0f,
+		cowPosBLX = -0.2f,
+		cowPosBLZ = 0.506f,
+		cowPosBRX = 0.1f,
+		cowPosBRZ = 0.59f,
+		cowPosFLX = -0.2f,
+		cowPosFLZ = -0.425f,
+		cowPosFRX = 0.15f,
+		cowPosFRZ = -0.430;
 
-//Keyframes (Manipulación y dibujo)
-float	posX = 0.0f,
-		posY = 0.0f,
-		posZ = 0.0f,
-		rotRodIzq = 0.0f,
-		giroMonito = 0.0f;
-float	incX = 0.0f,
-		incY = 0.0f,
-		incZ = 0.0f,
-		rotInc = 0.0f,
-		giroMonitoInc = 0.0f;
+float	cowIncX = 0.0f,
+		cowIncY = 0.0f,
+		cowIncZ = 0.0f,
+		cowRotIncY = 0.0f,
+		cowRotIncBLX = 0.0f,
+		cowRotIncFLX = 0.0f,
+		cowRotIncBLZ = 0.0f,
+		cowRotIncFLZ = 0.0f,
+		cowIncBLX = -0.2f,
+		cowIncBLZ = 0.506f,
+		cowIncBRX = 0.1f,
+		cowIncBRZ = 0.59f,
+		cowIncFLX = -0.2f,
+		cowIncFLZ = -0.425f,
+		cowIncFRX = 0.15f,
+		cowIncFRZ = -0.430;
 
-#define MAX_FRAMES 9
+
+#define COW_MAX_FRAMES 24
 int i_max_steps = 60;
 int i_curr_steps = 0;
-typedef struct _frame
+typedef struct _cow_frame
 {
 	//Variables para GUARDAR Key Frames
-	float posX;		//Variable para PosicionX
-	float posY;		//Variable para PosicionY
-	float posZ;		//Variable para PosicionZ
-	float rotRodIzq;
-	float giroMonito;
+	float cowPosX;		//Variable para PosicionX
+	float cowPosY;		//Variable para PosicionY
+	float cowPosZ;		//Variable para PosicionZ
+	float cowRotY;
+	float cowRotBLX;
+	float cowRotFLX;
+	float cowRotBLZ;
+	float cowRotFLZ;
+	float cowPosBLX;
+	float cowPosBLZ;
+	float cowPosBRX;
+	float cowPosBRZ;
+	float cowPosFLX;
+	float cowPosFLZ;
+	float cowPosFRX;
+	float cowPosFRZ;
 
-}FRAME;
 
-FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;			//introducir datos
-bool play = false;
-int playIndex = 0;
+
+}COW_FRAME;
+
+COW_FRAME CowKeyFrame[COW_MAX_FRAMES];
+int CowFrameIndex = 24;			//introducir datos
+bool cowPlay = false;
+int cowPlayIndex = 0;
 
 void saveFrame(void)
 {
 	//printf("frameindex %d\n", FrameIndex);
-	std::cout << "Frame Index = " << FrameIndex << std::endl;
+	std::cout << "Frame Index = " << CowFrameIndex << std::endl;
 
-	KeyFrame[FrameIndex].posX = posX;
-	KeyFrame[FrameIndex].posY = posY;
-	KeyFrame[FrameIndex].posZ = posZ;
+	CowKeyFrame[CowFrameIndex].cowPosX = cowPosX;
+	CowKeyFrame[CowFrameIndex].cowPosY = cowPosY;
+	CowKeyFrame[CowFrameIndex].cowPosZ = cowPosZ;
+	CowKeyFrame[CowFrameIndex].cowRotY = cowRotY;
+	CowKeyFrame[CowFrameIndex].cowRotBLX = cowRotBLX;
+	CowKeyFrame[CowFrameIndex].cowRotFLX = cowRotFLX;
+	CowKeyFrame[CowFrameIndex].cowRotBLZ = cowRotBLZ;
+	CowKeyFrame[CowFrameIndex].cowRotFLZ = cowRotFLZ;
+	CowKeyFrame[CowFrameIndex].cowPosBLX = cowPosBLX;
+	CowKeyFrame[CowFrameIndex].cowPosBLZ = cowPosBLZ;
+	CowKeyFrame[CowFrameIndex].cowPosBRX = cowPosBRX;
+	CowKeyFrame[CowFrameIndex].cowPosBRZ = cowPosBRZ;
+	CowKeyFrame[CowFrameIndex].cowPosFRX = cowPosFRX;
+	CowKeyFrame[CowFrameIndex].cowPosFRZ = cowPosFRZ;
+	CowKeyFrame[CowFrameIndex].cowPosFLX = cowPosFLX;
+	CowKeyFrame[CowFrameIndex].cowPosFLZ = cowPosFLZ;
 
-	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
-	KeyFrame[FrameIndex].giroMonito = giroMonito;
-
-	FrameIndex++;
+	CowFrameIndex++;
 }
 
 void resetElements(void)
 {
-	posX = KeyFrame[0].posX;
-	posY = KeyFrame[0].posY;
-	posZ = KeyFrame[0].posZ;
+	cowPosX = CowKeyFrame[0].cowPosX;
+	cowPosY = CowKeyFrame[0].cowPosY;
+	cowPosZ = CowKeyFrame[0].cowPosZ;
+	cowRotY = CowKeyFrame[0].cowRotY;
+	cowRotBLX = CowKeyFrame[0].cowRotBLX;
+	cowRotFLX = CowKeyFrame[0].cowRotFLX;
+	cowRotBLZ = CowKeyFrame[0].cowRotBLZ;
+	cowRotFLZ = CowKeyFrame[0].cowRotFLZ;
+	cowPosBLX = CowKeyFrame[0].cowPosBLX;
+	cowPosBLZ = CowKeyFrame[0].cowPosBLZ;
+	cowPosBRX = CowKeyFrame[0].cowPosBRX;
+	cowPosBRZ = CowKeyFrame[0].cowPosBRZ;
+	cowPosFLX = CowKeyFrame[0].cowPosFLX;
+	cowPosFLZ = CowKeyFrame[0].cowPosFLZ;
+	cowPosFRX = CowKeyFrame[0].cowPosFRX;
+	cowPosFRZ = CowKeyFrame[0].cowPosFRZ;
 
-	rotRodIzq = KeyFrame[0].rotRodIzq;
-	giroMonito = KeyFrame[0].giroMonito;
 }
 
 void interpolation(void)
 {
-	incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
-	incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
-	incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
-
-	rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
-	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps;
-
+	cowIncX = (CowKeyFrame[cowPlayIndex + 1].cowPosX - CowKeyFrame[cowPlayIndex].cowPosX) / i_max_steps;
+	cowIncY = (CowKeyFrame[cowPlayIndex + 1].cowPosY - CowKeyFrame[cowPlayIndex].cowPosY) / i_max_steps;
+	cowIncZ = (CowKeyFrame[cowPlayIndex + 1].cowPosZ - CowKeyFrame[cowPlayIndex].cowPosZ) / i_max_steps;
+	cowRotIncY = (CowKeyFrame[cowPlayIndex + 1].cowRotY - CowKeyFrame[cowPlayIndex].cowRotY) / i_max_steps;
+	cowRotIncBLX = (CowKeyFrame[cowPlayIndex + 1].cowRotBLX - CowKeyFrame[cowPlayIndex].cowRotBLX) / i_max_steps;
+	cowRotIncFLX = (CowKeyFrame[cowPlayIndex + 1].cowRotFLX - CowKeyFrame[cowPlayIndex].cowRotFLX) / i_max_steps;
+	cowRotIncBLZ = (CowKeyFrame[cowPlayIndex + 1].cowRotBLZ - CowKeyFrame[cowPlayIndex].cowRotBLZ) / i_max_steps;
+	cowRotIncFLZ = (CowKeyFrame[cowPlayIndex + 1].cowRotFLZ - CowKeyFrame[cowPlayIndex].cowRotFLZ) / i_max_steps;
+	cowIncBLX = (CowKeyFrame[cowPlayIndex + 1].cowPosBLX - CowKeyFrame[cowPlayIndex].cowPosBLX) / i_max_steps;
+	cowIncBLZ = (CowKeyFrame[cowPlayIndex + 1].cowPosBLZ - CowKeyFrame[cowPlayIndex].cowPosBLZ) / i_max_steps;
+	cowIncBRX = (CowKeyFrame[cowPlayIndex + 1].cowPosBRX - CowKeyFrame[cowPlayIndex].cowPosBRX) / i_max_steps;
+	cowIncBRZ = (CowKeyFrame[cowPlayIndex + 1].cowPosBRZ - CowKeyFrame[cowPlayIndex].cowPosBRZ) / i_max_steps;
+	cowIncFLX = (CowKeyFrame[cowPlayIndex + 1].cowPosFLX - CowKeyFrame[cowPlayIndex].cowPosFLX) / i_max_steps;
+	cowIncFLZ = (CowKeyFrame[cowPlayIndex + 1].cowPosFLZ - CowKeyFrame[cowPlayIndex].cowPosFLZ) / i_max_steps;
+	cowIncFRX = (CowKeyFrame[cowPlayIndex + 1].cowPosFRX - CowKeyFrame[cowPlayIndex].cowPosFRX) / i_max_steps;
+	cowIncFRZ = (CowKeyFrame[cowPlayIndex + 1].cowPosFRZ - CowKeyFrame[cowPlayIndex].cowPosFRZ) / i_max_steps;
 }
 
 void animate(void)
 {
-	if (play)
+	if (cowPlay)
 	{
 		if (i_curr_steps >= i_max_steps) //end of animation between frames?
 		{
-			playIndex++;
-			if (playIndex > FrameIndex - 2)	//end of total animation?
+			cowPlayIndex++;
+			if (cowPlayIndex > CowFrameIndex - 2)	//end of total animation?
 			{
 				std::cout << "Animation ended" << std::endl;
 				//printf("termina anim\n");
-				playIndex = 0;
-				play = false;
+				cowPlayIndex = 0;
+				cowPlay = false;
 			}
 			else //Next frame interpolations
 			{
@@ -166,22 +233,33 @@ void animate(void)
 		else
 		{
 			//Draw animation
-			posX += incX;
-			posY += incY;
-			posZ += incZ;
+			cowPosX += cowIncX;
+			cowPosY += cowIncY;
+			cowPosZ += cowIncZ;
+			cowRotY += cowRotIncY;
+			cowRotBLX += cowRotIncBLX;
+			cowRotFLX += cowRotIncFLX;
+			cowRotBLZ += cowRotIncBLZ;
+			cowRotFLZ += cowRotIncFLZ;
+			cowPosBLX += cowIncBLX;
+			cowPosBLZ += cowIncBLZ;
+			cowPosBRX += cowIncBRX;
+			cowPosBRZ += cowIncBRZ;
+			cowPosFRX += cowIncFRX;
+			cowPosFRZ += cowIncFRZ;
+			cowPosFLX += cowIncFLX;
+			cowPosFLZ += cowIncFLZ;
 
-			rotRodIzq += rotInc;
-			giroMonito += giroMonitoInc;
 
 			i_curr_steps++;
 		}
 	}
 
 	//Vehículo
-	if (animacion)
-	{
-		movAuto_z += 3.0f;
-	}
+	//if (animacion)
+	//{
+	//	
+	//}
 }
 
 void getResolution()
@@ -281,7 +359,7 @@ int main()
 	Model barn("resources/objects/barn/barn.obj");
 	Model tree1("resources/objects/tree1/Gledista_Triacanthos.obj");
 	Model tree2("resources/objects/tree2/Gledista_Triacanthos_2.obj");
-	Model tree3("resources/objects/tree3/Gledista_Triacanthos_3.obj");
+	//Model tree3("resources/objects/tree3/Gledista_Triacanthos_3.obj");
 	Model windmill("resources/objects/windmill/windmill.obj");
 	Model waterTower("resources/objects/waterTower/waterTower.obj");
 	Model cactus("resources/objects/cactus/cactus.obj");
@@ -309,16 +387,434 @@ int main()
 	//Model monteDos("resources/objects/monte2/monte2.obj");
 	Model mountain("resources/objects/mountain/mountain.obj");
 
+	//Models for animations
+	Model cowBody("resources/objects/cow/cow_body.obj");
+	Model cowBackRightLeg("resources/objects/cow/cow_back_right_leg.obj");
+	Model cowBackLeftLeg("resources/objects/cow/cow_back_left_leg.obj");
+	Model cowFrontRightLeg("resources/objects/cow/cow_front_right_leg.obj");
+	Model cowFrontLeftLeg("resources/objects/cow/cow_front_left_leg.obj");
+
+	CowKeyFrame[0].cowPosX = 0;
+	CowKeyFrame[0].cowPosY = 0;
+	CowKeyFrame[0].cowPosZ = 0;
+	CowKeyFrame[0].cowRotY = 0;
+	CowKeyFrame[0].cowRotBLX = 0;
+	CowKeyFrame[0].cowRotFLX = 0;
+	CowKeyFrame[0].cowRotBLZ = 0;
+	CowKeyFrame[0].cowRotFLZ = 0;
+	CowKeyFrame[0].cowPosBLX = -0.2f;
+	CowKeyFrame[0].cowPosBLZ = 0.506f;
+	CowKeyFrame[0].cowPosBRX = 0.1f;
+	CowKeyFrame[0].cowPosBRZ = 0.59f;
+	CowKeyFrame[0].cowPosFRX = 0.15f;
+	CowKeyFrame[0].cowPosFRZ = -0.430f;
+	CowKeyFrame[0].cowPosFLX = -0.2f;
+	CowKeyFrame[0].cowPosFLZ = -0.425f;
+
+	CowKeyFrame[1].cowPosX = 0;
+	CowKeyFrame[1].cowPosY = 0;
+	CowKeyFrame[1].cowPosZ = -1;
+	CowKeyFrame[1].cowRotY = 0;
+	CowKeyFrame[1].cowRotBLX = 15;
+	CowKeyFrame[1].cowRotFLX = -15;
+	CowKeyFrame[1].cowRotBLZ = 0;
+	CowKeyFrame[1].cowRotFLZ = 0;
+	CowKeyFrame[1].cowPosBLX = -0.2f;
+	CowKeyFrame[1].cowPosBLZ = 0.506f;
+	CowKeyFrame[1].cowPosBRX = 0.1f;
+	CowKeyFrame[1].cowPosBRZ = 0.59f;
+	CowKeyFrame[1].cowPosFRX = 0.15f;
+	CowKeyFrame[1].cowPosFRZ = -0.430f;
+	CowKeyFrame[1].cowPosFLX = -0.2f;
+	CowKeyFrame[1].cowPosFLZ = -0.425f;
+	
+	CowKeyFrame[2].cowPosX = 0;
+	CowKeyFrame[2].cowPosY = 0;
+	CowKeyFrame[2].cowPosZ = -2;
+	CowKeyFrame[2].cowRotY = 0;
+	CowKeyFrame[2].cowRotBLX = 35;
+	CowKeyFrame[2].cowRotFLX = -35;
+	CowKeyFrame[2].cowRotBLZ = 0;
+	CowKeyFrame[2].cowRotFLZ = 0;
+	CowKeyFrame[2].cowPosBLX = -0.2f;
+	CowKeyFrame[2].cowPosBLZ = 0.506f;
+	CowKeyFrame[2].cowPosBRX = 0.1f;
+	CowKeyFrame[2].cowPosBRZ = 0.59f;
+	CowKeyFrame[2].cowPosFRX = 0.15f;
+	CowKeyFrame[2].cowPosFRZ = -0.430f;
+	CowKeyFrame[2].cowPosFLX = -0.2f;
+	CowKeyFrame[2].cowPosFLZ = -0.425f;
+	
+	CowKeyFrame[3].cowPosX = 0;
+	CowKeyFrame[3].cowPosY = 0;
+	CowKeyFrame[3].cowPosZ = -3;
+	CowKeyFrame[3].cowRotY = 0;
+	CowKeyFrame[3].cowRotBLX = 0;
+	CowKeyFrame[3].cowRotFLX = 0;
+	CowKeyFrame[3].cowRotBLZ = 0;
+	CowKeyFrame[3].cowRotFLZ = 0;
+	CowKeyFrame[3].cowPosBLX = -0.2f;
+	CowKeyFrame[3].cowPosBLZ = 0.506f;
+	CowKeyFrame[3].cowPosBRX = 0.1f;
+	CowKeyFrame[3].cowPosBRZ = 0.59f;
+	CowKeyFrame[3].cowPosFRX = 0.15f;
+	CowKeyFrame[3].cowPosFRZ = -0.430f;
+	CowKeyFrame[3].cowPosFLX = -0.2f;
+	CowKeyFrame[3].cowPosFLZ = -0.425f;
+	
+	CowKeyFrame[4].cowPosX = 0;
+	CowKeyFrame[4].cowPosY = 0;
+	CowKeyFrame[4].cowPosZ = -4;
+	CowKeyFrame[4].cowRotY = 0;
+	CowKeyFrame[4].cowRotBLX = -15;
+	CowKeyFrame[4].cowRotFLX = 15;
+	CowKeyFrame[4].cowRotBLZ = 0;
+	CowKeyFrame[4].cowRotFLZ = 0;
+	CowKeyFrame[4].cowPosBLX = -0.2f;
+	CowKeyFrame[4].cowPosBLZ = 0.506f;
+	CowKeyFrame[4].cowPosBRX = 0.1f;
+	CowKeyFrame[4].cowPosBRZ = 0.59f;
+	CowKeyFrame[4].cowPosFRX = 0.15f;
+	CowKeyFrame[4].cowPosFRZ = -0.430f;
+	CowKeyFrame[4].cowPosFLX = -0.2f;
+	CowKeyFrame[4].cowPosFLZ = -0.425f;
+	
+	CowKeyFrame[5].cowPosX = 0;
+	CowKeyFrame[5].cowPosY = 0;
+	CowKeyFrame[5].cowPosZ = -5;
+	CowKeyFrame[5].cowRotY = 0;
+	CowKeyFrame[5].cowRotBLX = -35;
+	CowKeyFrame[5].cowRotFLX = 35;
+	CowKeyFrame[5].cowRotBLZ = 0;
+	CowKeyFrame[5].cowRotFLZ = 0;
+	CowKeyFrame[5].cowPosBLX = -0.2f;
+	CowKeyFrame[5].cowPosBLZ = 0.506f;
+	CowKeyFrame[5].cowPosBRX = 0.1f;
+	CowKeyFrame[5].cowPosBRZ = 0.59f;
+	CowKeyFrame[5].cowPosFRX = 0.15f;
+	CowKeyFrame[5].cowPosFRZ = -0.430f;
+	CowKeyFrame[5].cowPosFLX = -0.2f;
+	CowKeyFrame[5].cowPosFLZ = -0.425f;
+	
+	CowKeyFrame[6].cowPosX = 0;
+	CowKeyFrame[6].cowPosY = 0;
+	CowKeyFrame[6].cowPosZ = -6;
+	CowKeyFrame[6].cowRotY = 0;
+	CowKeyFrame[6].cowRotBLX = 0;
+	CowKeyFrame[6].cowRotFLX = 0;
+	CowKeyFrame[6].cowRotBLZ = 0;
+	CowKeyFrame[6].cowRotFLZ = 0;
+	CowKeyFrame[6].cowPosBLX = -0.2f;
+	CowKeyFrame[6].cowPosBLZ = 0.506f;
+	CowKeyFrame[6].cowPosBRX = 0.1f;
+	CowKeyFrame[6].cowPosBRZ = 0.59f;
+	CowKeyFrame[6].cowPosFRX = 0.15f;
+	CowKeyFrame[6].cowPosFRZ = -0.430f;
+	CowKeyFrame[6].cowPosFLX = -0.2f;
+	CowKeyFrame[6].cowPosFLZ = -0.425f;
+	
+	CowKeyFrame[7].cowPosX = 0;
+	CowKeyFrame[7].cowPosY = 0;
+	CowKeyFrame[7].cowPosZ = -6;
+	CowKeyFrame[7].cowRotY = -90;
+	CowKeyFrame[7].cowRotBLX = 0;
+	CowKeyFrame[7].cowRotFLX = 0;
+	CowKeyFrame[7].cowRotBLZ = 0;
+	CowKeyFrame[7].cowRotFLZ = 0;
+	CowKeyFrame[7].cowPosBLX = -0.506f;
+	CowKeyFrame[7].cowPosBLZ = -0.2f;
+	CowKeyFrame[7].cowPosBRX = -0.59f;
+	CowKeyFrame[7].cowPosBRZ = 0.1f;
+	CowKeyFrame[7].cowPosFRX = 0.430f;
+	CowKeyFrame[7].cowPosFRZ = 0.15f;
+	CowKeyFrame[7].cowPosFLX = 0.425f;
+	CowKeyFrame[7].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[8].cowPosX = 1;
+	CowKeyFrame[8].cowPosY = 0;
+	CowKeyFrame[8].cowPosZ = -6;
+	CowKeyFrame[8].cowRotY = -90;
+	CowKeyFrame[8].cowRotBLX = 0;
+	CowKeyFrame[8].cowRotFLX = 0;
+	CowKeyFrame[8].cowRotBLZ = 15;
+	CowKeyFrame[8].cowRotFLZ = -15;
+	CowKeyFrame[8].cowPosBLX = -0.506f;
+	CowKeyFrame[8].cowPosBLZ = -0.2f;
+	CowKeyFrame[8].cowPosBRX = -0.59f;
+	CowKeyFrame[8].cowPosBRZ = 0.1f;
+	CowKeyFrame[8].cowPosFRX = 0.430f;
+	CowKeyFrame[8].cowPosFRZ = 0.15f;
+	CowKeyFrame[8].cowPosFLX = 0.425f;
+	CowKeyFrame[8].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[9].cowPosX = 2;
+	CowKeyFrame[9].cowPosY = 0;
+	CowKeyFrame[9].cowPosZ = -6;
+	CowKeyFrame[9].cowRotY = -90;
+	CowKeyFrame[9].cowRotBLX = 0;
+	CowKeyFrame[9].cowRotFLX = 0;
+	CowKeyFrame[9].cowRotBLZ = 35;
+	CowKeyFrame[9].cowRotFLZ = -35;
+	CowKeyFrame[9].cowPosBLX = -0.506f;
+	CowKeyFrame[9].cowPosBLZ = -0.2f;
+	CowKeyFrame[9].cowPosBRX = -0.59f;
+	CowKeyFrame[9].cowPosBRZ = 0.1f;
+	CowKeyFrame[9].cowPosFRX = 0.430f;
+	CowKeyFrame[9].cowPosFRZ = 0.15f;
+	CowKeyFrame[9].cowPosFLX = 0.425f;
+	CowKeyFrame[9].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[10].cowPosX = 3;
+	CowKeyFrame[10].cowPosY = 0;
+	CowKeyFrame[10].cowPosZ = -6;
+	CowKeyFrame[10].cowRotY = -90;
+	CowKeyFrame[10].cowRotBLX = 0;
+	CowKeyFrame[10].cowRotFLX = 0;
+	CowKeyFrame[10].cowRotBLZ = 0;
+	CowKeyFrame[10].cowRotFLZ = 0;
+	CowKeyFrame[10].cowPosBLX = -0.506f;
+	CowKeyFrame[10].cowPosBLZ = -0.2f;
+	CowKeyFrame[10].cowPosBRX = -0.59f;
+	CowKeyFrame[10].cowPosBRZ = 0.1f;
+	CowKeyFrame[10].cowPosFRX = 0.430f;
+	CowKeyFrame[10].cowPosFRZ = 0.15f;
+	CowKeyFrame[10].cowPosFLX = 0.425f;
+	CowKeyFrame[10].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[11].cowPosX = 4;
+	CowKeyFrame[11].cowPosY = 0;
+	CowKeyFrame[11].cowPosZ = -6;
+	CowKeyFrame[11].cowRotY = -90;
+	CowKeyFrame[11].cowRotBLX = 0;
+	CowKeyFrame[11].cowRotFLX = 0;
+	CowKeyFrame[11].cowRotBLZ = -15;
+	CowKeyFrame[11].cowRotFLZ = 15;
+	CowKeyFrame[11].cowPosBLX = -0.506f;
+	CowKeyFrame[11].cowPosBLZ = -0.2f;
+	CowKeyFrame[11].cowPosBRX = -0.59f;
+	CowKeyFrame[11].cowPosBRZ = 0.1f;
+	CowKeyFrame[11].cowPosFRX = 0.430f;
+	CowKeyFrame[11].cowPosFRZ = 0.15f;
+	CowKeyFrame[11].cowPosFLX = 0.425f;
+	CowKeyFrame[11].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[12].cowPosX = 5;
+	CowKeyFrame[12].cowPosY = 0;
+	CowKeyFrame[12].cowPosZ = -6;
+	CowKeyFrame[12].cowRotY = -90;
+	CowKeyFrame[12].cowRotBLX = 0;
+	CowKeyFrame[12].cowRotFLX = 0;
+	CowKeyFrame[12].cowRotBLZ = -35;
+	CowKeyFrame[12].cowRotFLZ = 35;
+	CowKeyFrame[12].cowPosBLX = -0.506f;
+	CowKeyFrame[12].cowPosBLZ = -0.2f;
+	CowKeyFrame[12].cowPosBRX = -0.59f;
+	CowKeyFrame[12].cowPosBRZ = 0.1f;
+	CowKeyFrame[12].cowPosFRX = 0.430f;
+	CowKeyFrame[12].cowPosFRZ = 0.15f;
+	CowKeyFrame[12].cowPosFLX = 0.425f;
+	CowKeyFrame[12].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[13].cowPosX = 6;
+	CowKeyFrame[13].cowPosY = 0;
+	CowKeyFrame[13].cowPosZ = -6;
+	CowKeyFrame[13].cowRotY = -90;
+	CowKeyFrame[13].cowRotBLX = 0;
+	CowKeyFrame[13].cowRotFLX = 0;
+	CowKeyFrame[13].cowRotBLZ = 0;
+	CowKeyFrame[13].cowRotFLZ = 0;
+	CowKeyFrame[13].cowPosBLX = -0.506f;
+	CowKeyFrame[13].cowPosBLZ = -0.2f;
+	CowKeyFrame[13].cowPosBRX = -0.59f;
+	CowKeyFrame[13].cowPosBRZ = 0.1f;
+	CowKeyFrame[13].cowPosFRX = 0.430f;
+	CowKeyFrame[13].cowPosFRZ = 0.15f;
+	CowKeyFrame[13].cowPosFLX = 0.425f;
+	CowKeyFrame[13].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[14].cowPosX = 7;
+	CowKeyFrame[14].cowPosY = 0;
+	CowKeyFrame[14].cowPosZ = -6;
+	CowKeyFrame[14].cowRotY = -90;
+	CowKeyFrame[14].cowRotBLX = 0;
+	CowKeyFrame[14].cowRotFLX = 0;
+	CowKeyFrame[14].cowRotBLZ = 15;
+	CowKeyFrame[14].cowRotFLZ = -15;
+	CowKeyFrame[14].cowPosBLX = -0.506f;
+	CowKeyFrame[14].cowPosBLZ = -0.2f;
+	CowKeyFrame[14].cowPosBRX = -0.59f;
+	CowKeyFrame[14].cowPosBRZ = 0.1f;
+	CowKeyFrame[14].cowPosFRX = 0.430f;
+	CowKeyFrame[14].cowPosFRZ = 0.15f;
+	CowKeyFrame[14].cowPosFLX = 0.425f;
+	CowKeyFrame[14].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[15].cowPosX = 8;
+	CowKeyFrame[15].cowPosY = 0;
+	CowKeyFrame[15].cowPosZ = -6;
+	CowKeyFrame[15].cowRotY = -90;
+	CowKeyFrame[15].cowRotBLX = 0;
+	CowKeyFrame[15].cowRotFLX = 0;
+	CowKeyFrame[15].cowRotBLZ = 35;
+	CowKeyFrame[15].cowRotFLZ = -35;
+	CowKeyFrame[15].cowPosBLX = -0.506f;
+	CowKeyFrame[15].cowPosBLZ = -0.2f;
+	CowKeyFrame[15].cowPosBRX = -0.59f;
+	CowKeyFrame[15].cowPosBRZ = 0.1f;
+	CowKeyFrame[15].cowPosFRX = 0.430f;
+	CowKeyFrame[15].cowPosFRZ = 0.15f;
+	CowKeyFrame[15].cowPosFLX = 0.425f;
+	CowKeyFrame[15].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[16].cowPosX = 9;
+	CowKeyFrame[16].cowPosY = 0;
+	CowKeyFrame[16].cowPosZ = -6;
+	CowKeyFrame[16].cowRotY = -90;
+	CowKeyFrame[16].cowRotBLX = 0;
+	CowKeyFrame[16].cowRotFLX = 0;
+	CowKeyFrame[16].cowRotBLZ = 0;
+	CowKeyFrame[16].cowRotFLZ = 0;
+	CowKeyFrame[16].cowPosBLX = -0.506f;
+	CowKeyFrame[16].cowPosBLZ = -0.2f;
+	CowKeyFrame[16].cowPosBRX = -0.59f;
+	CowKeyFrame[16].cowPosBRZ = 0.1f;
+	CowKeyFrame[16].cowPosFRX = 0.430f;
+	CowKeyFrame[16].cowPosFRZ = 0.15f;
+	CowKeyFrame[16].cowPosFLX = 0.425f;
+	CowKeyFrame[16].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[17].cowPosX = 10;
+	CowKeyFrame[17].cowPosY = 0;
+	CowKeyFrame[17].cowPosZ = -6;
+	CowKeyFrame[17].cowRotY = -90;
+	CowKeyFrame[17].cowRotBLX = 0;
+	CowKeyFrame[17].cowRotFLX = 0;
+	CowKeyFrame[17].cowRotBLZ = -15;
+	CowKeyFrame[17].cowRotFLZ = 15;
+	CowKeyFrame[17].cowPosBLX = -0.506f;
+	CowKeyFrame[17].cowPosBLZ = -0.2f;
+	CowKeyFrame[17].cowPosBRX = -0.59f;
+	CowKeyFrame[17].cowPosBRZ = 0.1f;
+	CowKeyFrame[17].cowPosFRX = 0.430f;
+	CowKeyFrame[17].cowPosFRZ = 0.15f;
+	CowKeyFrame[17].cowPosFLX = 0.425f;
+	CowKeyFrame[17].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[18].cowPosX = 11;
+	CowKeyFrame[18].cowPosY = 0;
+	CowKeyFrame[18].cowPosZ = -6;
+	CowKeyFrame[18].cowRotY = -90;
+	CowKeyFrame[18].cowRotBLX = 0;
+	CowKeyFrame[18].cowRotFLX = 0;
+	CowKeyFrame[18].cowRotBLZ = -35;
+	CowKeyFrame[18].cowRotFLZ = 35;
+	CowKeyFrame[18].cowPosBLX = -0.506f;
+	CowKeyFrame[18].cowPosBLZ = -0.2f;
+	CowKeyFrame[18].cowPosBRX = -0.59f;
+	CowKeyFrame[18].cowPosBRZ = 0.1f;
+	CowKeyFrame[18].cowPosFRX = 0.430f;
+	CowKeyFrame[18].cowPosFRZ = 0.15f;
+	CowKeyFrame[18].cowPosFLX = 0.425f;
+	CowKeyFrame[18].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[19].cowPosX = 12;
+	CowKeyFrame[19].cowPosY = 0;
+	CowKeyFrame[19].cowPosZ = -6;
+	CowKeyFrame[19].cowRotY = -90;
+	CowKeyFrame[19].cowRotBLX = 0;
+	CowKeyFrame[19].cowRotFLX = 0;
+	CowKeyFrame[19].cowRotBLZ = 0;
+	CowKeyFrame[19].cowRotFLZ = 0;
+	CowKeyFrame[19].cowPosBLX = -0.506f;
+	CowKeyFrame[19].cowPosBLZ = -0.2f;
+	CowKeyFrame[19].cowPosBRX = -0.59f;
+	CowKeyFrame[19].cowPosBRZ = 0.1f;
+	CowKeyFrame[19].cowPosFRX = 0.430f;
+	CowKeyFrame[19].cowPosFRZ = 0.15f;
+	CowKeyFrame[19].cowPosFLX = 0.425f;
+	CowKeyFrame[19].cowPosFLZ = -0.2f;
+	
+	CowKeyFrame[20].cowPosX = 12;
+	CowKeyFrame[20].cowPosY = 0;
+	CowKeyFrame[20].cowPosZ = -6;
+	CowKeyFrame[20].cowRotY = -180;
+	CowKeyFrame[20].cowRotBLX = 0;
+	CowKeyFrame[20].cowRotFLX = 0;
+	CowKeyFrame[20].cowRotBLZ = 0;
+	CowKeyFrame[20].cowRotFLZ = 0;
+	CowKeyFrame[20].cowPosBLX = 0.2f;
+	CowKeyFrame[20].cowPosBLZ = -0.506f;
+	CowKeyFrame[20].cowPosBRX = -0.1f;
+	CowKeyFrame[20].cowPosBRZ = -0.59f;
+	CowKeyFrame[20].cowPosFRX = -0.15f;
+	CowKeyFrame[20].cowPosFRZ = 0.430f;
+	CowKeyFrame[20].cowPosFLX = 0.2f;
+	CowKeyFrame[20].cowPosFLZ = 0.425f;
+	
+	CowKeyFrame[21].cowPosX = 12;
+	CowKeyFrame[21].cowPosY = 0;
+	CowKeyFrame[21].cowPosZ = -5;
+	CowKeyFrame[21].cowRotY = -180;
+	CowKeyFrame[21].cowRotBLX = 15;
+	CowKeyFrame[21].cowRotFLX = -15;
+	CowKeyFrame[21].cowRotBLZ = 0;
+	CowKeyFrame[21].cowRotFLZ = 0;
+	CowKeyFrame[21].cowPosBLX = 0.2f;
+	CowKeyFrame[21].cowPosBLZ = -0.506f;
+	CowKeyFrame[21].cowPosBRX = -0.1f;
+	CowKeyFrame[21].cowPosBRZ = -0.59f;
+	CowKeyFrame[21].cowPosFRX = -0.15f;
+	CowKeyFrame[21].cowPosFRZ = 0.430f;
+	CowKeyFrame[21].cowPosFLX = 0.2f;
+	CowKeyFrame[21].cowPosFLZ = 0.425f;
+	
+	CowKeyFrame[22].cowPosX = 12;
+	CowKeyFrame[22].cowPosY = 0;
+	CowKeyFrame[22].cowPosZ = -4;
+	CowKeyFrame[22].cowRotY = -180;
+	CowKeyFrame[22].cowRotBLX = 35;
+	CowKeyFrame[22].cowRotFLX = -35;
+	CowKeyFrame[22].cowRotBLZ = 0;
+	CowKeyFrame[22].cowRotFLZ = 0;
+	CowKeyFrame[22].cowPosBLX = 0.2f;
+	CowKeyFrame[22].cowPosBLZ = -0.506f;
+	CowKeyFrame[22].cowPosBRX = -0.1f;
+	CowKeyFrame[22].cowPosBRZ = -0.59f;
+	CowKeyFrame[22].cowPosFRX = -0.15f;
+	CowKeyFrame[22].cowPosFRZ = 0.430f;
+	CowKeyFrame[22].cowPosFLX = 0.2f;
+	CowKeyFrame[22].cowPosFLZ = 0.425f;
+	
+	CowKeyFrame[23].cowPosX = 12;
+	CowKeyFrame[23].cowPosY = 0;
+	CowKeyFrame[23].cowPosZ = -3;
+	CowKeyFrame[23].cowRotY = -180;
+	CowKeyFrame[23].cowRotBLX = 0;
+	CowKeyFrame[23].cowRotFLX = 0;
+	CowKeyFrame[23].cowRotBLZ = 0;
+	CowKeyFrame[23].cowRotFLZ = 0;
+	CowKeyFrame[23].cowPosBLX = 0.2f;
+	CowKeyFrame[23].cowPosBLZ = -0.506f;
+	CowKeyFrame[23].cowPosBRX = -0.1f;
+	CowKeyFrame[23].cowPosBRZ = -0.59f;
+	CowKeyFrame[23].cowPosFRX = -0.15f;
+	CowKeyFrame[23].cowPosFRZ = 0.430f;
+	CowKeyFrame[23].cowPosFLX = 0.2f;
+	CowKeyFrame[23].cowPosFLZ = 0.425f;
+
+
 
 	//Inicialización de KeyFrames
-	for (int i = 0; i < MAX_FRAMES; i++)
-	{
-		KeyFrame[i].posX = 0;
-		KeyFrame[i].posY = 0;
-		KeyFrame[i].posZ = 0;
-		KeyFrame[i].rotRodIzq = 0;
-		KeyFrame[i].giroMonito = 0;
-	}
+	//for (int i = 0; i < MAX_FRAMES; i++)
+	//{
+	//	KeyFrame[i].cowPosX = 0;
+	//	KeyFrame[i].cowPosY = 0;
+	//	KeyFrame[i].cowPosZ = 0;
+	//	KeyFrame[i].cowRotY = 0;
+	//	KeyFrame[i].cowBl = 0;
+	//	KeyFrame[i].cowFl = 0;
+
+	//}
 
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -361,8 +857,8 @@ int main()
 		staticShader.setFloat("pointLight[0].quadratic", 0.032f);
 
 		staticShader.setVec3("pointLight[1].position", glm::vec3(-80.0, 0.0f, 0.0f));
-		staticShader.setVec3("pointLight[1].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
-		staticShader.setVec3("pointLight[1].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[1].ambient", glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[1].diffuse", glm::vec3(1.0f, 0.0f, 0.0f));
 		staticShader.setVec3("pointLight[1].specular", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setFloat("pointLight[1].constant", 1.0f);
 		staticShader.setFloat("pointLight[1].linear", 0.009f);
@@ -385,7 +881,7 @@ int main()
 		
 
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Escenario
+		// Starts stage
 		// -------------------------------------------------------------------------------------------------------------------------
 		
 		staticShader.use();
@@ -473,7 +969,7 @@ int main()
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(1.0f, -0.2f, 50.0f));
 		model = glm::scale(model, glm::vec3(0.06f));
 		staticShader.setMat4("model", model);
-		tree3.Draw(staticShader);
+		tree2.Draw(staticShader);
 
 		//Tree 4 -- park
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, -0.2f, 43.0f));
@@ -491,7 +987,7 @@ int main()
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, -0.2f, 54.0f));
 		model = glm::scale(model, glm::vec3(0.06f));
 		staticShader.setMat4("model", model);
-		tree3.Draw(staticShader);
+		tree1.Draw(staticShader);
 		
 		
 		// Rock 1 -- park
@@ -529,7 +1025,7 @@ int main()
 		woodFence.Draw(staticShader);
 
 		//Barn
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-20.0f, -0.2f, 40.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-17.0f, -0.2f, 40.0f));
 		model = glm::scale(model, glm::vec3(0.55f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
@@ -635,12 +1131,7 @@ int main()
 		staticShader.setMat4("model", model);
 		house5.Draw(staticShader);
 
-
-
-			// -------------------------------------------------------------------------------------------------------------------------
-			// BAR
-			// -------------------------------------------------------------------------------------------------------------------------
-
+		// BAR
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-18.0f,0.0f,12.0f));
 		model = glm::scale(model,glm::vec3(0.6f));
@@ -648,10 +1139,7 @@ int main()
 		staticShader.setMat4("model", model);
 		saloon.Draw(staticShader);
 
-			// --------------------------------------------------------------------------------------------------------------------------
-			// SHERIFF OFFICE
-			// --------------------------------------------------------------------------------------------------------------------------
-
+		// SHERIFF OFFICE
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-35.0f, 0.0f, 28.0f));
 		model = glm::scale(model, glm::vec3(0.045f));
@@ -659,10 +1147,7 @@ int main()
 		staticShader.setMat4("model", model);
 		sheriff_office.Draw(staticShader);
 
-			// ---------------------------------------------------------------------------------------------------------------------------
-			// HOTEL
-			// ---------------------------------------------------------------------------------------------------------------------------
-
+		// HOTEL
 		model = glm::mat4(1.0f);
 		model = glm::scale(model, glm::vec3(0.05f));
 		model = glm::translate(model, glm::vec3(-530.0f, 70.0f, -255.0f));
@@ -670,9 +1155,8 @@ int main()
 		staticShader.setMat4("model", model);
 		hotel.Draw(staticShader);
 
-			// ----------------------------------------------------------------------------------------------------------------------------
-			// ESTACIÓN DE TREN
-			// ----------------------------------------------------------------------------------------------------------------------------
+
+		// ESTACIÓN DE TREN
 		model = glm::mat4(4.0f);
 		model = glm::translate(model, glm::vec3(-45.0f,-0.5f,-10.0f));
 		model = glm::scale(model, glm::vec3(0.038f));
@@ -680,10 +1164,7 @@ int main()
 		staticShader.setMat4("model", model);
 		train_station.Draw(staticShader);
 
-			// -----------------------------------------------------------------------------------------------------------------------------
-			// Vias del Tren
-			// -----------------------------------------------------------------------------------------------------------------------------
-
+		// Vias del Tren
 		model = glm::mat4(4.0f);
 		model = glm::translate(model, glm::vec3(-60.0f, -0.3f, -17.0f));
 		model = glm::scale(model, glm::vec3(0.020f));
@@ -715,20 +1196,14 @@ int main()
 		staticShader.setMat4("model", model);
 		rail.Draw(staticShader);
 
-			// -------------------------------------------------------------------------------------------------------------------------
-			// Doctor
-			// -------------------------------------------------------------------------------------------------------------------------
-
+		// Doctor
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-5.0f, 0.0f, -20.0f));
 		model = glm::scale(model, glm::vec3(0.15f));
 		staticShader.setMat4("model",model);
 		doctor.Draw(staticShader);
 
-			// -------------------------------------------------------------------------------------------------------------------------
-			// Túneles
-			// -------------------------------------------------------------------------------------------------------------------------
-
+		// Túneles
 		model = glm::mat4(1.0f);
 		model = glm::translate(model,glm::vec3(-60.0f, -1.0f, 80.0f));
 		model = glm::scale(model, glm::vec3(0.3f));
@@ -743,10 +1218,7 @@ int main()
 		staticShader.setMat4("model", model);
 		tunnel.Draw(staticShader);
 
-			// -------------------------------------------------------------------------------------------------------------------------
-			// Montañas
-			// -------------------------------------------------------------------------------------------------------------------------
-
+		// Montañas
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -126.0f));
 		staticShader.setMat4("model", model);
@@ -758,8 +1230,61 @@ int main()
 		mountain.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Termina Escenario
+		// End of stage
 		// -------------------------------------------------------------------------------------------------------------------------
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Start animations
+		// -------------------------------------------------------------------------------------------------------------------------
+		
+		// --------Walking cow-----------
+		// Body of the cow
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-30.0f+cowPosX, -0.25f+cowPosY, 40.0f+cowPosZ));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(cowRotY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		cowBody.Draw(staticShader);
+
+		// Back right leg of the cow
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-30.0f + cowPosX + cowPosBRX, 0.47f + cowPosY, 40.0f + cowPosZ + cowPosBRZ));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(cowRotBLX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(cowRotBLZ), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(cowRotY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		cowBackRightLeg.Draw(staticShader);
+
+		// Back left leg of the cow
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-30.0f + cowPosX + cowPosBLX, 0.47f + cowPosY, 40.0f + cowPosZ + cowPosBLZ));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(cowRotFLX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(cowRotFLZ), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(cowRotY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		cowBackLeftLeg.Draw(staticShader);
+
+		// Front right leg of the cow
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-30.0f + cowPosX + cowPosFRX, 0.265f + cowPosY, 40.0f + cowPosZ + cowPosFRZ));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(cowRotBLX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(cowRotBLZ), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(cowRotY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		cowFrontRightLeg.Draw(staticShader);
+
+		// Front left leg of the cow
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-30.0f + cowPosX + cowPosFLX, 0.33f + cowPosY, 40.0f + cowPosZ + cowPosFLZ));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(cowRotFLX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(cowRotFLZ), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(cowRotY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		cowFrontLeftLeg.Draw(staticShader);
 
 		//-------------------------------------------------------------------------------------
 		// draw skybox as last
@@ -801,49 +1326,46 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(LEFT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
-	//To Configure Model
+	//Cow Movement
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		posZ++;
+		cowPosZ--;
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-		posZ--;
+		cowPosZ++;
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-		posX--;
+		cowPosX--;
 	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		posX++;
-	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-		rotRodIzq--;
-	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
-		rotRodIzq++;
-	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
-		giroMonito--;
-	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
-		giroMonito++;
+		cowPosX++;
 	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
-		lightPosition.x++;
+		cowPosY++;
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
-		lightPosition.x--;
+		cowPosY--;
 
-	//Car animation
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-		animacion ^= true;
+	////Car animation
+	//if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	//	animacion ^= true;
+
+
 
 	//To play KeyFrame animation 
-	if (key == GLFW_KEY_P && action == GLFW_PRESS)
+	if (key == GLFW_KEY_C && action == GLFW_PRESS)
 	{
-		if (play == false && (FrameIndex > 1))
+		std::cout << CowFrameIndex << std::endl;
+		if (cowPlay == false && (CowFrameIndex > 1))
 		{
 			std::cout << "Play animation" << std::endl;
+			bool played = PlaySound(L"cow.wav", NULL, SND_ASYNC);
+			cout << "Ambient:" << played << endl;
 			resetElements();
 			//First Interpolation				
 			interpolation();
 
-			play = true;
-			playIndex = 0;
+			cowPlay = true;
+			cowPlayIndex = 0;
 			i_curr_steps = 0;
 		}
 		else
 		{
-			play = false;
+			cowPlay = false;
 			std::cout << "Not enough Key Frames" << std::endl;
 		}
 	}
@@ -851,9 +1373,10 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//To Save a KeyFrame
 	if (key == GLFW_KEY_L && action == GLFW_PRESS)
 	{
-		if (FrameIndex < MAX_FRAMES)
+		if (CowFrameIndex < COW_MAX_FRAMES)
 		{
 			saveFrame();
+			std::cout << "Frame saved" << std::endl;
 		}
 	}
 }

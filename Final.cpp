@@ -62,18 +62,16 @@ double	deltaTime = 0.0f,
 glm::vec3 lightPosition(0.0f, 4.0f, -10.0f);
 glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 
-// posiciones
-//float x = 0.0f;
-//float y = 0.0f;
-float	movAuto_x = 0.0f,
-		movAuto_z = 0.0f,
-		orienta = 0.0f;
-
-bool	animacion = false,
-		recorrido1 = true,
-		recorrido2 = false,
-		recorrido3 = false,
-		recorrido4 = false;
+// Variables for tumbleweed animation
+bool	playTumbleWeed = false,
+		tumbleUp = false;
+float	tumblePosX = -9.0f,
+		tumblePosY = -0.1f,
+		tumblePosZ = 50.0f,
+		tumbleRotY = -180.0f,
+		tumbleRotX = 0.0f;
+int		tumbleState = 0,
+		tumbleShootCount = 0;
 
 //Variables for the cow animation
 float	cowPosX = 0.0f,
@@ -211,6 +209,84 @@ void interpolation(void)
 
 void animate(void)
 {
+	if (playTumbleWeed) {
+		
+		if (tumbleState == 1) {
+			tumblePosZ -= 0.05f;
+			if (tumbleUp) {
+				tumblePosY += 0.05f;
+				
+				if (tumblePosY >= 0.6f) {
+					tumbleUp = false;
+				}
+			}
+			else if (!tumbleUp) {
+				tumblePosY -= 0.05f;
+				if (tumblePosY <= -0.1f) {
+					tumbleUp = true;
+				}
+			}
+			if (tumblePosZ <= 34.0f && tumblePosY <= 0.1f) {
+				tumbleState = 2;
+				bool played = PlaySound(L"western.wav", NULL, SND_ASYNC);
+				cout << "Ambient:" << played << endl;
+			}
+
+		}
+		else if (tumbleState == 2) {
+			tumbleRotY += 4.0f;
+			if (tumbleRotY >= -90.0f) {
+				tumbleState = 3;
+			}
+		}
+		else if (tumbleState == 3) {
+			tumblePosX -= 0.05f;
+			if (tumbleUp) {
+				tumblePosY += 0.05f;
+
+				if (tumblePosY >= 0.6f) {
+					tumbleUp = false;
+				}
+			}
+			else if (!tumbleUp) {
+				tumblePosY -= 0.05f;
+				if (tumblePosY <= -0.1f) {
+					tumbleUp = true;
+				}
+			}
+			if (tumblePosX <= -29.0f && tumblePosY <= 0.1f) {
+				tumbleState = 4;
+			}
+		}
+
+		else if (tumbleState == 4) {
+			tumbleRotY -= 4.0f;
+			if (tumbleRotY <= -180.0f) {
+				tumbleState = 5;
+				bool played = PlaySound(L"shoots.wav", NULL, SND_ASYNC);
+				cout << "Ambient:" << played << endl;
+			}
+		}
+		else if (tumbleState == 5) {
+			if (tumbleUp) {
+				tumbleRotX -= 4.0f;
+				if (tumbleRotX <= -50.0f) {
+					tumbleUp = false;
+				}
+			}
+			else if (!tumbleUp) {
+				tumbleRotX += 4.0f;
+				if (tumbleRotX >= 0.0f) {
+					tumbleUp = true;
+					tumbleShootCount++;
+				}
+			}
+			if (tumbleShootCount == 4) {
+				tumbleState = 0;
+			}
+		}
+	}
+	
 	if (cowPlay)
 	{
 		if (i_curr_steps >= i_max_steps) //end of animation between frames?
@@ -393,6 +469,8 @@ int main()
 	Model cowBackLeftLeg("resources/objects/cow/cow_back_left_leg.obj");
 	Model cowFrontRightLeg("resources/objects/cow/cow_front_right_leg.obj");
 	Model cowFrontLeftLeg("resources/objects/cow/cow_front_left_leg.obj");
+	Model tumbleWeed("resources/objects/tumbleWeed/tumbleweed.obj");
+
 
 	CowKeyFrame[0].cowPosX = 0;
 	CowKeyFrame[0].cowPosY = 0;
@@ -1286,6 +1364,16 @@ int main()
 		staticShader.setMat4("model", model);
 		cowFrontLeftLeg.Draw(staticShader);
 
+		// --------Shooter tumbleweed-----------
+		// Body
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(tumblePosX, tumblePosY, tumblePosZ));
+		model = glm::scale(model, glm::vec3(0.6f));
+		model = glm::rotate(model, glm::radians(tumbleRotY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(tumbleRotX), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		tumbleWeed.Draw(staticShader);
+
 		//-------------------------------------------------------------------------------------
 		// draw skybox as last
 		// -------------------
@@ -1340,11 +1428,19 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		cowPosY--;
 
-	////Car animation
-	//if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-	//	animacion ^= true;
-
-
+	//Tumbleweed Animation
+	if (key == GLFW_KEY_X && action == GLFW_PRESS)
+		if (tumbleState == 0) {
+			playTumbleWeed = true,
+			tumbleUp = false;
+			tumblePosX = -9.0f,
+			tumblePosY = -0.1f,
+			tumblePosZ = 50.0f,
+			tumbleRotY = -180.0f,
+			tumbleRotX = 0.0f;
+			tumbleState = 1,
+			tumbleShootCount = 0;
+		}
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_C && action == GLFW_PRESS)

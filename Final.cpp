@@ -971,7 +971,7 @@ int main()
 		barn.Draw(staticShader);
 
 		// Barn -- cow 1
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-31.5f, -0.2f, 47.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-29.0f, -0.2f, 47.0f));
 		model = glm::scale(model, glm::vec3(0.2f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
@@ -1621,8 +1621,6 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	{
 		bool played = PlaySound(L"ambient.wav", NULL, SND_LOOP | SND_ASYNC);
 	}
-
-	
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

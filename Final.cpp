@@ -241,7 +241,7 @@ void animate(void)
 			}
 			if (tumblePosZ <= 34.0f && tumblePosY <= 0.1f) {
 				tumbleState = 2;
-				bool played = PlaySound("western.wav", NULL, SND_ASYNC);
+				bool played = PlaySound(L"western.wav", NULL, SND_ASYNC);
 			}
 
 		}
@@ -275,7 +275,7 @@ void animate(void)
 			tumbleRotY -= 4.0f;
 			if (tumbleRotY <= -180.0f) {
 				tumbleState = 5;
-				bool played = PlaySound("shoots.wav", NULL, SND_ASYNC);
+				bool played = PlaySound(L"shoots.wav", NULL, SND_ASYNC);
 			}
 		}
 		else if (tumbleState == 5) {
@@ -555,7 +555,7 @@ void animate(void)
 	switch (estadosVillager) {
 		case 0:
 			
-			posX_villager += 0.427f * sentidoVillager;
+			posX_villager += 0.0427f * sentidoVillager;
 			if (sentidoVillager < 0) {
 				giroVillager = 180.0f;
 			}
@@ -564,11 +564,11 @@ void animate(void)
 			}
 			break;
 		case 1:
-			posZ_villager -= 0.595 * sentidoVillager;
+			posZ_villager -= 0.0595 * sentidoVillager;
 			giroVillager = 90.0f * sentidoVillager;
 			break;
 		case 2:
-			posX_villager += 0.363f * sentidoVillager;
+			posX_villager += 0.0363f * sentidoVillager;
 			if (sentidoVillager < 0) {
 				giroVillager = 180.0f;
 			}
@@ -582,7 +582,7 @@ void animate(void)
 	}
 
 	cuadrosVillager++;
-	if (cuadrosVillager == 100) {
+	if (cuadrosVillager == 1000) {
 		cuadrosVillager = 0;
 		estadosVillager+= 1 * (int)sentidoVillager;
 		if (estadosVillager == 3 || estadosVillager == -1) {
@@ -678,11 +678,9 @@ int main()
 	// -----------
 	Model woodFence("resources/objects/woodFence/woodFence.obj");
 	Model rock1("resources/objects/rock1/rock1.obj");
-	//Model barrel1("resources/objects/barrel/barrel.obj");
 	Model barn("resources/objects/barn/barn.obj");
-	//Model tree1("resources/objects/tree1/Gledista_Triacanthos.obj");
-	//Model tree2("resources/objects/tree2/Gledista_Triacanthos_2.obj");
-	
+	Model tree1("resources/objects/tree1/tree.obj");
+
 	Model windmill("resources/objects/windmill/windmill.obj");
 	Model waterTower("resources/objects/waterTower/waterTower.obj");
 	Model cactus("resources/objects/cactus/cactus.obj");
@@ -896,39 +894,39 @@ int main()
 
 		//Tree 1 -- park
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(22.0f, -0.2f, 45.0f));
-		model = glm::scale(model, glm::vec3(0.06f));
+		model = glm::scale(model, glm::vec3(0.6f));
 		staticShader.setMat4("model", model);
-		//tree1.Draw(staticShader);
+		tree1.Draw(staticShader);
 
 		//Tree 2 -- park
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(17.0f, -0.2f, 55.0f));
-		model = glm::scale(model, glm::vec3(0.06f));
+		model = glm::scale(model, glm::vec3(0.6f));
 		staticShader.setMat4("model", model);
-		//tree2.Draw(staticShader);
+		tree1.Draw(staticShader);
 
 		//Tree 3 -- park
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(1.0f, -0.2f, 50.0f));
-		model = glm::scale(model, glm::vec3(0.06f));
+		model = glm::scale(model, glm::vec3(0.6f));
 		staticShader.setMat4("model", model);
-		//tree2.Draw(staticShader);
+		tree1.Draw(staticShader);
 
 		//Tree 4 -- park
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, -0.2f, 43.0f));
-		model = glm::scale(model, glm::vec3(0.06f));
+		model = glm::scale(model, glm::vec3(0.6f));
 		staticShader.setMat4("model", model);
-		//tree1.Draw(staticShader);
+		tree1.Draw(staticShader);
 
 		//Tree 5 -- park
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-11.0f, -0.2f, 48.0f));
-		model = glm::scale(model, glm::vec3(0.06f));
+		model = glm::scale(model, glm::vec3(0.6f));
 		staticShader.setMat4("model", model);
-		//tree2.Draw(staticShader);
+		tree1.Draw(staticShader);
 
 		//Tree 6 -- park
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, -0.2f, 54.0f));
-		model = glm::scale(model, glm::vec3(0.06f));
+		model = glm::scale(model, glm::vec3(0.6f));
 		staticShader.setMat4("model", model);
-		//tree1.Draw(staticShader);
+		tree1.Draw(staticShader);
 		
 		
 		// Rock 1 -- park
@@ -1576,6 +1574,8 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//Train Animation
 	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
 		animacion_tren = animacion_tren ^ true;
+		bool played = PlaySound(L"train.wav", NULL, SND_ASYNC);
+
 	}
 
 
@@ -1600,7 +1600,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		if (cowPlay == false && (CowFrameIndex > 1))
 		{
 		
-			bool played = PlaySound("cow.wav", NULL, SND_ASYNC);
+			bool played = PlaySound(L"cow.wav", NULL, SND_ASYNC);
 			
 			resetElements();
 			//First Interpolation				
@@ -1615,6 +1615,11 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 			cowPlay = false;
 			std::cout << "Not enough Key Frames" << std::endl;
 		}
+	}
+
+	if (key == GLFW_KEY_M && action == GLFW_PRESS)
+	{
+		bool played = PlaySound(L"ambient.wav", NULL, SND_LOOP | SND_ASYNC);
 	}
 
 	

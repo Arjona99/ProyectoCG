@@ -99,6 +99,17 @@ int		estado_barra = 0;
 boolean animacion_tren  = false,
 		parada_estacion = false;
 
+//Animacion Villager
+float	giro_piernas = 0.0f,
+		sentido_piernas = 1.0f,
+		posX_villager = 0.0f,
+		posZ_villager = 0.0f,
+		giroVillager = 0.0f,
+		sentidoVillager = 1.0f;
+
+int cuadrosVillager = 0;
+int estadosVillager = 0;
+
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
 		posY = 0.0f,
@@ -300,7 +311,7 @@ void animate(void)
 			}
 			break;
 		default:
-			cout << "Default" << endl;
+			//cout << "Default" << endl;
 			estado_buitre = 0;
 			break;
 	}
@@ -405,6 +416,57 @@ void animate(void)
 			parada_estacion = true;
 		}
 	}
+	
+
+	//====================== ANIMACION VILLAGER =================================
+	if (giro_piernas >= -30.0f && giro_piernas <= 30.0f) {
+		giro_piernas += 1.5f * (sentido_piernas);
+
+		if (giro_piernas == -30.0f || giro_piernas == 30.0f) {
+			sentido_piernas *= -1.0f;
+		}
+	}
+
+	switch (estadosVillager) {
+		case 0:
+			
+			posX_villager += 0.427f * sentidoVillager;
+			if (sentidoVillager < 0) {
+				giroVillager = 180.0f;
+			}
+			else {
+				giroVillager = 0.0f;
+			}
+			break;
+		case 1:
+			posZ_villager -= 0.595 * sentidoVillager;
+			giroVillager = 90.0f * sentidoVillager;
+			break;
+		case 2:
+			posX_villager += 0.363f * sentidoVillager;
+			if (sentidoVillager < 0) {
+				giroVillager = 180.0f;
+			}
+			else {
+				giroVillager = 0.0f;
+			}
+			break;
+		
+		default:
+			//cout << "DEFAULT" << endl;
+			//estadosVillager = 0;
+			break;
+	}
+
+	cuadrosVillager++;
+	if (cuadrosVillager == 100) {
+		cuadrosVillager = 0;
+		estadosVillager+= 1 * (int)sentidoVillager;
+		if (estadosVillager == 3 || estadosVillager == -1) {
+			sentidoVillager *= -1.0f;
+		}
+	}
+
 	
 
 }
@@ -564,6 +626,15 @@ int main()
 	Model tuercaRightBack("resources/objects/train/tuerca_right_back/tuerca_right_back.obj");
 	Model tuercaLeftBack("resources/objects/train/tuerca_left_back/tuerca_left_back.obj");
 
+	//ADEANOS
+
+	Model minecraftVillager("resources/objects/minecraftVillager/minecraftVillager.obj");
+
+	Model minecraftVillagerTorso("resources/objects/minecraftVillagerTorso/minecraftVillagerTorso.obj");
+	Model minecraftVillagerRightLeg("resources/objects/minecraftVillagerRightLeg/minecraftVillagerRightLeg.obj");
+	Model minecraftVillagerLeftLeg("resources/objects/minecraftVillagerLeftLeg/minecraftVillagerLeftLeg.obj");
+
+	Model trainWagon("resources/objects/trainWagon/trainWagon.obj");
 
 	
 
@@ -983,7 +1054,7 @@ int main()
 		model = glm::scale(model, glm::vec3(0.15f));
 		staticShader.setMat4("model",model);
 		doctor.Draw(staticShader);
-
+		
 			// -------------------------------------------------------------------------------------------------------------------------
 			// Túneles
 			// -------------------------------------------------------------------------------------------------------------------------
@@ -1085,6 +1156,14 @@ int main()
 		model = glm::rotate(model, glm::radians(-giro_alas), glm::vec3(0.0f, 0.0f, 1.0f));
 		staticShader.setMat4("model", model);
 		vulture_right_wing.Draw(staticShader);
+
+		// ======================== Wagon ============================
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-60.0f, -0.5f, 105.0f - posX_tren));
+		model = glm::scale(model, glm::vec3(0.2f));
+		staticShader.setMat4("model", model);
+		trainWagon.Draw(staticShader);
 
 
 		// ======================== TREN =============================
@@ -1224,6 +1303,88 @@ int main()
 		staticShader.setMat4("model", model);
 		barreraDerecha.Draw(staticShader);
 
+		// ================================ Villagers ====================================
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(30.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillager.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(40.0f, 0.0f, 8.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillager.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(4.0f, 0.0f, 15.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillager.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(4.0f, 0.0f, 18.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillager.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-2.0f, 0.0f, 31.0f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillager.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-6.0f, 0.0f, 31.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillager.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(10.0f, 0.0f, -27.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillager.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-20.0f, 0.0f, -22.0f));
+		model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillager.Draw(staticShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(40.0f, 0.0f, -27.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillager.Draw(staticShader);
+
+
+		//------Animados-------
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-35.0f + posX_villager, 1.0f, 35.0f+posZ_villager));
+		tmp = model = glm::rotate(model, glm::radians(90.0f+giroVillager), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillagerTorso.Draw(staticShader);
+
+		
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(giro_piernas), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillagerLeftLeg.Draw(staticShader);
+
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(-giro_piernas), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f));
+		staticShader.setMat4("model", model);
+		minecraftVillagerRightLeg.Draw(staticShader);
+
 		//-------------------------------------------------------------------------------------
 		// draw skybox as last
 		// -------------------
@@ -1266,16 +1427,17 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 	//Animacion TREN
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		posY += 0.1f;
+		posZ_villager += 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-		posY -= 0.1f;
+		posZ_villager -= 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-		giro_barra_f -= 0.3f;
+		posX_villager -= 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		giro_barra_f += 0.3f;
+		posX_villager += 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) {
-
-		
+		cout << "PosX: " << posX_villager << endl;
+		cout << "PosZ: " << posZ_villager << endl;
+		cout << "-----------------------------" << endl;
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)

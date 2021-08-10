@@ -1,8 +1,1 @@
 #Visual Studio files
-.vs/**
-*.sln
-*.vcxproj
-*.vcxproj.*
-*.sln
-ProyectoCG/**
-Debug/**

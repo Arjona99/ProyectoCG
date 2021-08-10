@@ -1,0 +1,31 @@
+﻿  Final.cpp
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\include\shader_m.h(44,40): warning C4101: 'e': variable local sin referencia
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\include\modelAnim.h(104,44): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\include\modelAnim.h(520,24): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(94,21): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(147,21): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(567,45): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(1641,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(1642,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(1646,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(1647,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(1649,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(1650,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\ProyectoCG\Final.cpp(1658,28): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+  glad.c
+glfw3.lib(context.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(context.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(init.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(init.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(input.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(input.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(monitor.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(monitor.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(vulkan.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(vulkan.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(window.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(window.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_init.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_init.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_joystick.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_joystick.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_monitor.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_monitor.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_time.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_time.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_thread.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_thread.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_window.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_window.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(wgl_context.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(wgl_context.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(egl_context.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(egl_context.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(osmesa_context.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(osmesa_context.obj)' o en 'A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+  ProyectoCG.vcxproj -> A:\escuela\10moSemestre\cg\ProyectoCG\ProyectoCG\Debug\ProyectoCG.exe
